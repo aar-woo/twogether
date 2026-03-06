@@ -1,0 +1,9 @@
+node_modules/
+.next/
+dist/
+*.lock
+*.log
+coverage/
+.env*
+.git/
+public/
