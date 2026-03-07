@@ -10,19 +10,21 @@
 ### Database Migrations
 
 - [ ] `001_schema.sql` — weddings, wedding_members, invites
-- [ ] `002_rls.sql` — RLS policies for weddings, wedding_members, invites
-- [ ] `003_milestones.sql` — milestones table + RLS
-- [ ] `004_decisions.sql` — decisions, decision_options, votes + RLS
-- [ ] `005_budget.sql` — budget_categories, expenses + RLS
-- [ ] `006_guests.sql` — guests table + RLS
+- [ ] `002_rls_helpers.sql` — `get_my_wedding_id()` security definer function + RLS indexes
+- [ ] `003_rls_core.sql` — RLS policies for weddings, wedding_members, invites
+- [ ] `004_milestones.sql` — milestones table + RLS
+- [ ] `005_decisions.sql` — decisions, decision_options, votes + RLS
+- [ ] `006_budget.sql` — budget_categories, expenses + RLS
+- [ ] `007_guests.sql` — guests table + RLS
 
 ### RLS Policies
 
-- [ ] weddings: members can read/write their own wedding
-- [ ] wedding_members: members can read; only owner can insert for partner
-- [ ] milestones, decisions, decision_options, budget_categories, expenses, guests: wedding members only
-- [ ] votes: members can read; each user can only write their own votes
-- [ ] invites: owner can insert; anyone with valid token can read + update (claim)
+- [ ] weddings: members can read/write their own wedding (via `get_my_wedding_id()`)
+- [ ] wedding_members: self-join pattern to avoid recursion; BEFORE INSERT trigger enforces max 2 members
+- [ ] milestones, decisions, budget_categories, guests: wedding-scoped via `(SELECT get_my_wedding_id())`
+- [ ] decision_options, expenses: two-hop via parent table join + `get_my_wedding_id()`
+- [ ] votes: write = user-scoped; read = own votes always + partner's votes only after both have voted (EXISTS pattern)
+- [ ] invites: owner can insert; token lookup uses service role key at API layer, not RLS
 
 ### Project Scaffold
 
