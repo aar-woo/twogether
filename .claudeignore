@@ -7,4 +7,4 @@ coverage/
 .env*
 .git/
 public/
-WORKFLOW.MD
+WORKFLOW.md
