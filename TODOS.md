@@ -233,18 +233,3 @@
 - Multi-wedding support
 - Export / print budget + guest list
 
-Read the codebase at /Users/aaronwoo/Desktop/aar-woo-repos-local. Analyze:
-
-- Project structure and folder conventions
-- How Supabase client is initialized (client vs server vs middleware)
-- How auth sessions are handled
-- How server actions and API routes are structured
-- Data fetching patterns (server components vs client hooks)
-- TypeScript conventions
-- Testing setup and patterns
-- Error handling approach
-
-Then generate a CLAUDE.md for my NEW wedding planner project
-that follows these same patterns. Include all commands,
-conventions, and the Supabase rules I'll paste below.
-Do NOT start coding.

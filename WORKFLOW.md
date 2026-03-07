@@ -6,7 +6,7 @@
 SESSION START:
 1. Fresh Claude Code session
 2. First message: "Read SPEC.md, TODOS.md, and CLAUDE.md
-   before doing anything"
+   before doing anything. Follow the MCP Usage Rules in CLAUDE.md."
 3. Then: "We're implementing Milestone [N].
    Switch to Plan Mode and show me your implementation
    plan before writing any code."

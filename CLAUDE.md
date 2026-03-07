@@ -17,7 +17,8 @@ npx tsc --noEmit     # Type-check without emitting
 supabase start       # Start local Supabase stack
 supabase db reset    # Reset + re-seed local DB
 supabase db push     # Apply pending migrations
-supabase gen types typescript --local > types/supabase.ts
+supabase gen types typescript --local > types/supabase.ts   # local stack
+supabase gen types typescript --project-id <project-ref> > types/supabase.ts  # remote (via MCP)
 ```
 
 ---
