@@ -12,6 +12,13 @@
 
 **Requirements:** AUTH-01, AUTH-02, AUTH-03, COUP-03
 
+**Plans:** 3 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Scaffold Next.js project and apply all DB migrations (schema, helper, indexes, RLS, trigger)
+- [ ] 01-02-PLAN.md — Configure terracotta theme, Supabase clients, middleware, and route group layout shells
+- [ ] 01-03-PLAN.md — Build login, signup, and onboarding pages with server actions
+
 **Success Criteria:**
 1. `npm run dev` starts without errors; `npm run build` passes with zero type errors
 2. User can sign up, complete onboarding (create wedding), and land on an empty dashboard
@@ -125,3 +132,4 @@
 ---
 
 *Roadmap created: 2026-03-07*
+*Updated: 2026-03-07 — Phase 1 plans created (3 plans, 3 waves)*
