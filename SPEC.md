@@ -316,7 +316,7 @@ created_at timestamptz DEFAULT now()
 
 | Layer           | Technology                       |
 | --------------- | -------------------------------- |
-| Framework       | Next.js 15 (App Router)          |
+| Framework       | Next.js 14+ (App Router)         |
 | UI components   | shadcn/ui                        |
 | Styling         | Tailwind CSS                     |
 | Database + Auth | Supabase (Postgres + Auth + RLS) |
@@ -349,3 +349,18 @@ created_at timestamptz DEFAULT now()
 4. **Budget category names** — Are category names freeform, or should they be constrained to the milestone/decision category list?
 5. **Guest count cap** — Any expected limit on guest list size?
 
+Read the codebase at [path to GSD repo]. Analyze:
+
+- Project structure and folder conventions
+- How Supabase client is initialized (client vs server vs middleware)
+- How auth sessions are handled
+- How server actions and API routes are structured
+- Data fetching patterns (server components vs client hooks)
+- TypeScript conventions
+- Testing setup and patterns
+- Error handling approach
+
+Then generate a CLAUDE.md for my NEW wedding planner project
+that follows these same patterns. Include all commands,
+conventions, and the Supabase rules I'll paste below.
+Do NOT start coding.

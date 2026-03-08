@@ -56,6 +56,13 @@ Each route's server mutations live in a colocated `actions.ts` (`"use server"`).
 
 ---
 
+## GSD Workflow
+
+- Always use /gsd:discuss-phase before /gsd:plan-phase
+- Supabase MCP must be confirmed connected before any execute-phase
+- Run `supabase gen types typescript` after any phase that includes migrations
+- Check /gsd:progress at the start of every session
+
 ## Supabase
 
 See `docs/supabase.md` for:
