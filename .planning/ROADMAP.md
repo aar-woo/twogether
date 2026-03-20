@@ -12,7 +12,7 @@
 
 **Requirements:** AUTH-01, AUTH-02, AUTH-03, COUP-03
 
-**Plans:** 3 plans
+**Plans:** 1/3 plans executed
 
 Plans:
 - [ ] 01-01-PLAN.md — Scaffold Next.js project and apply all DB migrations (schema, helper, indexes, RLS, trigger)

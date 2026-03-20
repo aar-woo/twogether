@@ -15,7 +15,7 @@
 
 - [ ] **COUP-01**: Wedding owner can generate an invite link for their partner
 - [ ] **COUP-02**: Partner can open invite link, sign up or log in, and join the wedding
-- [ ] **COUP-03**: A wedding enforces a maximum of 2 members; no third member can join
+- [x] **COUP-03**: A wedding enforces a maximum of 2 members; no third member can join
 - [ ] **COUP-04**: After claiming invite, both partners see the same shared dashboard
 
 ### Dashboard
@@ -108,7 +108,7 @@
 | AUTH-03 | Phase 1 | Pending |
 | COUP-01 | Phase 6 | Pending |
 | COUP-02 | Phase 6 | Pending |
-| COUP-03 | Phase 1 | Pending |
+| COUP-03 | Phase 1 | Complete |
 | COUP-04 | Phase 6 | Pending |
 | DASH-01 | Phase 2 | Pending |
 | DASH-02 | Phase 2 | Pending |
