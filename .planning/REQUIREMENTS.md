@@ -8,8 +8,8 @@
 ### Authentication
 
 - [ ] **AUTH-01**: User can sign up with email and password and create a wedding during onboarding
-- [ ] **AUTH-02**: Authenticated user session persists across browser refresh
-- [ ] **AUTH-03**: Unauthenticated users are redirected to login when accessing protected routes
+- [x] **AUTH-02**: Authenticated user session persists across browser refresh
+- [x] **AUTH-03**: Unauthenticated users are redirected to login when accessing protected routes
 
 ### Couple Linking
 
@@ -104,8 +104,8 @@
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | AUTH-01 | Phase 1 | Pending |
-| AUTH-02 | Phase 1 | Pending |
-| AUTH-03 | Phase 1 | Pending |
+| AUTH-02 | Phase 1 | Complete |
+| AUTH-03 | Phase 1 | Complete |
 | COUP-01 | Phase 6 | Pending |
 | COUP-02 | Phase 6 | Pending |
 | COUP-03 | Phase 1 | Complete |

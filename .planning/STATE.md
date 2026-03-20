@@ -2,13 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
+current_plan: 2/3 complete [███████░░░] 67%
 status: unknown
-last_updated: "2026-03-20T01:04:31.167Z"
+last_updated: "2026-03-20T01:15:54.381Z"
 progress:
   total_phases: 7
   completed_phases: 0
   total_plans: 3
-  completed_plans: 1
+  completed_plans: 2
 ---
 
 # Project State
@@ -24,14 +25,14 @@ See: .planning/PROJECT.md (updated 2026-03-07)
 
 **Milestone:** v1
 **Active Phase:** 1 — Foundation
-**Current Plan:** 1/3 complete [███░░░░░░░] 33%
+**Current Plan:** 2/3 complete [███████░░░] 67%
 **Overall Progress:** 0 / 7 phases complete
 
 ## Phase Status
 
 | Phase | Name | Status |
 |-------|------|--------|
-| 1 | Foundation | In progress (1/3 plans done) |
+| 1 | Foundation | In progress (2/3 plans done) |
 | 2 | Dashboard + Progress Map | Not started |
 | 3 | Decision Queue + Voting | Not started |
 | 4 | Budget Tracking | Not started |
@@ -45,19 +46,23 @@ See: .planning/PROJECT.md (updated 2026-03-07)
 - **01-foundation**: `wedding_members` uses self-join alias instead of helper function to prevent recursive RLS evaluation
 - **01-foundation**: `invites` SELECT policy is wedding-scoped; service role handles public token lookup at API layer (Phase 6)
 - **01-foundation**: `supabase gen types` stderr redirected to `/dev/null` to prevent "Connecting to db" line corrupting types/supabase.ts
+- [Phase 01-foundation]: Relative imports used for types/ directory (tsconfig @/* maps to src/*, not root types/)
+- [Phase 01-foundation]: Middleware /onboarding allowlist added beyond docs/supabase.md template
 
 ## Performance Metrics
 
 | Phase | Plan | Duration | Tasks | Files |
 |-------|------|----------|-------|-------|
 | 01-foundation | 01 | 46min | 2 | 8 |
+| 01-foundation | 02 | 15min | 2 | 10 |
 
 ## Session Log
 
 - **2026-03-07**: Project initialized. PROJECT.md, REQUIREMENTS.md, ROADMAP.md created from SPEC.md and TODOS.md. Ready to begin Phase 1.
 - **2026-03-20**: Completed 01-foundation-01-PLAN.md — Next.js scaffold, all 10 DB tables with RLS, 5 migrations applied, types generated.
+- **2026-03-20**: Completed 01-foundation-02-PLAN.md — Terracotta theme, Playfair Display + Inter fonts, Supabase clients, auth middleware, route group layout shells.
 
 ## Resume Point
 
-Next action: Execute `01-foundation/01-02-PLAN.md`
-Resume file: .planning/phases/01-foundation/01-02-PLAN.md
+Next action: Execute `01-foundation/01-03-PLAN.md`
+Resume file: .planning/phases/01-foundation/01-03-PLAN.md
