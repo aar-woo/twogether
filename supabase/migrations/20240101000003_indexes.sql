@@ -1,0 +1,12 @@
+CREATE INDEX wedding_members_user_id_idx ON wedding_members (user_id);
+CREATE INDEX wedding_members_wedding_id_idx ON wedding_members (wedding_id);
+CREATE INDEX milestones_wedding_id_idx ON milestones (wedding_id);
+CREATE INDEX decisions_wedding_id_idx ON decisions (wedding_id);
+CREATE INDEX decision_options_decision_id_idx ON decision_options (decision_id);
+CREATE INDEX votes_option_id_idx ON votes (option_id);
+CREATE INDEX votes_user_id_idx ON votes (user_id);
+CREATE INDEX budget_categories_wedding_id_idx ON budget_categories (wedding_id);
+CREATE INDEX expenses_budget_category_id_idx ON expenses (budget_category_id);
+CREATE INDEX guests_wedding_id_idx ON guests (wedding_id);
+CREATE INDEX invites_wedding_id_idx ON invites (wedding_id);
+CREATE INDEX invites_token_idx ON invites (token);
