@@ -43,3 +43,7 @@ implementation plan including:
 
 Wait for my approval before proceeding.
 ```
+
+## GSD Workflow
+
+Manual milestone kick-off prompts/gsd:discuss-phase N → /gsd:plan-phase N → /gsd:execute-phase NYour "fresh session per milestone" ruleBuilt-in — each plan executes in a fresh subagent context automaticallyManual git commitsAtomic commit per task, automaticallyManual testing step/gsd:verify-work N — walks you through UAT, spawns debug agents on failures
