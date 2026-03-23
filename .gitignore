@@ -29,3 +29,9 @@ yarn-error.log*
 
 # Supabase
 .supabase/
+
+# TypeScript build cache
+tsconfig.tsbuildinfo
+
+# Claude Code local state
+.claude/projects/
