@@ -20,10 +20,10 @@
 
 ### Dashboard
 
-- [ ] **DASH-01**: Dashboard shows budget snapshot: total budget, total allocated, total spent, remaining
-- [ ] **DASH-02**: Dashboard budget totals update when expenses or budget settings change
+- [x] **DASH-01**: Dashboard shows budget snapshot: total budget, total allocated, total spent, remaining
+- [x] **DASH-02**: Dashboard budget totals update when expenses or budget settings change
 - [ ] **DASH-03**: Dashboard shows milestone progress map with status-based visual indicators
-- [ ] **DASH-04**: Dashboard is accessible only to authenticated members of that wedding
+- [x] **DASH-04**: Dashboard is accessible only to authenticated members of that wedding
 
 ### Milestones
 
@@ -110,10 +110,10 @@
 | COUP-02 | Phase 6 | Pending |
 | COUP-03 | Phase 1 | Complete |
 | COUP-04 | Phase 6 | Pending |
-| DASH-01 | Phase 2 | Pending |
-| DASH-02 | Phase 2 | Pending |
+| DASH-01 | Phase 2 | Complete |
+| DASH-02 | Phase 2 | Complete |
 | DASH-03 | Phase 2 | Pending |
-| DASH-04 | Phase 2 | Pending |
+| DASH-04 | Phase 2 | Complete |
 | MILE-01 | Phase 2 | Complete |
 | MILE-02 | Phase 2 | Pending |
 | MILE-03 | Phase 2 | Pending |

@@ -4,12 +4,12 @@ milestone: v1.0
 milestone_name: milestone
 current_plan: Not started
 status: unknown
-last_updated: "2026-03-24T05:01:28.421Z"
+last_updated: "2026-03-24T05:04:39.362Z"
 progress:
   total_phases: 7
   completed_phases: 1
   total_plans: 6
-  completed_plans: 4
+  completed_plans: 5
 ---
 
 # Project State
@@ -53,6 +53,8 @@ See: .planning/PROJECT.md (updated 2026-03-07)
 - [Phase 01-foundation]: Middleware updated to redirect authenticated users from /login and /signup to /dashboard
 - [Phase 02-dashboard-progress-map]: AFTER INSERT trigger (not BEFORE) used so NEW.id is committed before being used as FK in milestones
 - [Phase 02-dashboard-progress-map]: supabase db reset used instead of db push to apply migration cleanly to local stack (no remote project linked)
+- [Phase 02-dashboard-progress-map]: maybeSingle() used for wedding fetch so missing membership triggers redirect without throwing
+- [Phase 02-dashboard-progress-map]: WelcomeBanner uses instant local dismiss without waiting for server action — UX tolerant of action failure
 
 ## Performance Metrics
 
@@ -62,6 +64,7 @@ See: .planning/PROJECT.md (updated 2026-03-07)
 | 01-foundation | 02 | 15min | 2 | 10 |
 | 01-foundation | 03 | 45min | 3 | 12 |
 | Phase 02-dashboard-progress-map P01 | 8min | 2 tasks | 2 files |
+| Phase 02-dashboard-progress-map P02 | 2min | 2 tasks | 4 files |
 
 ## Session Log
 
