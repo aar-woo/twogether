@@ -27,7 +27,7 @@
 
 ### Milestones
 
-- [ ] **MILE-01**: 9 default milestones are seeded automatically on wedding creation
+- [x] **MILE-01**: 9 default milestones are seeded automatically on wedding creation
 - [ ] **MILE-02**: Either partner can toggle a milestone's status (not_started / in_progress / complete)
 - [ ] **MILE-03**: Either partner can add a custom milestone appended to the list
 - [ ] **MILE-04**: Progress map visually distinguishes all three milestone statuses
@@ -114,7 +114,7 @@
 | DASH-02 | Phase 2 | Pending |
 | DASH-03 | Phase 2 | Pending |
 | DASH-04 | Phase 2 | Pending |
-| MILE-01 | Phase 2 | Pending |
+| MILE-01 | Phase 2 | Complete |
 | MILE-02 | Phase 2 | Pending |
 | MILE-03 | Phase 2 | Pending |
 | MILE-04 | Phase 2 | Pending |
