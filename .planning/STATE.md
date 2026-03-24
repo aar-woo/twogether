@@ -4,12 +4,12 @@ milestone: v1.0
 milestone_name: milestone
 current_plan: Not started
 status: unknown
-last_updated: "2026-03-23T05:54:46.457Z"
+last_updated: "2026-03-24T05:42:02.606Z"
 progress:
   total_phases: 7
-  completed_phases: 1
-  total_plans: 3
-  completed_plans: 3
+  completed_phases: 2
+  total_plans: 6
+  completed_plans: 6
 ---
 
 # Project State
@@ -51,6 +51,12 @@ See: .planning/PROJECT.md (updated 2026-03-07)
 - [Phase 01-foundation]: useActionState used (not useFormState) — React 19 / Next.js 15 canonical pattern
 - [Phase 01-foundation]: RLS INSERT policies required fix migration — original policies blocked authenticated users from inserting into weddings/wedding_members
 - [Phase 01-foundation]: Middleware updated to redirect authenticated users from /login and /signup to /dashboard
+- [Phase 02-dashboard-progress-map]: AFTER INSERT trigger (not BEFORE) used so NEW.id is committed before being used as FK in milestones
+- [Phase 02-dashboard-progress-map]: supabase db reset used instead of db push to apply migration cleanly to local stack (no remote project linked)
+- [Phase 02-dashboard-progress-map]: maybeSingle() used for wedding fetch so missing membership triggers redirect without throwing
+- [Phase 02-dashboard-progress-map]: WelcomeBanner uses instant local dismiss without waiting for server action — UX tolerant of action failure
+- [Phase 02-dashboard-progress-map]: Sort milestones by STATUS_PRIORITY on initial prop only — do NOT re-sort optimistic state to prevent jarring card jumps on badge click
+- [Phase 02-dashboard-progress-map]: Tailwind utility classes used for terracotta palette (bg-terracotta-500) not arbitrary CSS variable syntax (bg-[--color-terracotta-500]) which is invalid
 
 ## Performance Metrics
 
@@ -59,6 +65,9 @@ See: .planning/PROJECT.md (updated 2026-03-07)
 | 01-foundation | 01 | 46min | 2 | 8 |
 | 01-foundation | 02 | 15min | 2 | 10 |
 | 01-foundation | 03 | 45min | 3 | 12 |
+| Phase 02-dashboard-progress-map P01 | 8min | 2 tasks | 2 files |
+| Phase 02-dashboard-progress-map P02 | 2min | 2 tasks | 4 files |
+| Phase 02-dashboard-progress-map P03 | 30min | 3 tasks | 3 files |
 
 ## Session Log
 
@@ -70,4 +79,4 @@ See: .planning/PROJECT.md (updated 2026-03-07)
 ## Resume Point
 
 Next action: Begin Phase 2 — Dashboard + Progress Map
-Resume file: .planning/phases/02-dashboard-progress-map/02-CONTEXT.md
+Resume file: None

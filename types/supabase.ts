@@ -258,6 +258,7 @@ export type Database = {
           created_at: string | null
           id: string
           is_default: boolean
+          notes: string | null
           sort_order: number
           status: string
           title: string
@@ -267,6 +268,7 @@ export type Database = {
           created_at?: string | null
           id?: string
           is_default?: boolean
+          notes?: string | null
           sort_order?: number
           status?: string
           title: string
@@ -276,6 +278,7 @@ export type Database = {
           created_at?: string | null
           id?: string
           is_default?: boolean
+          notes?: string | null
           sort_order?: number
           status?: string
           title?: string
@@ -363,6 +366,7 @@ export type Database = {
           created_at: string | null
           created_by: string
           date: string | null
+          dismissed_welcome: boolean
           id: string
           name: string
           total_budget: number | null
@@ -371,6 +375,7 @@ export type Database = {
           created_at?: string | null
           created_by: string
           date?: string | null
+          dismissed_welcome?: boolean
           id?: string
           name: string
           total_budget?: number | null
@@ -379,6 +384,7 @@ export type Database = {
           created_at?: string | null
           created_by?: string
           date?: string | null
+          dismissed_welcome?: boolean
           id?: string
           name?: string
           total_budget?: number | null
