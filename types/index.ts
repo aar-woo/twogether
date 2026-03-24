@@ -7,6 +7,18 @@ export interface Wedding {
   name: string;
   date: string | null;
   total_budget: number;
+  dismissed_welcome: boolean;
+  created_at: string;
+}
+
+export interface Milestone {
+  id: string;
+  wedding_id: string;
+  title: string;
+  status: "not_started" | "in_progress" | "complete";
+  is_default: boolean;
+  sort_order: number;
+  notes: string | null;
   created_at: string;
 }
 
