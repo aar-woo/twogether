@@ -22,15 +22,15 @@
 
 - [x] **DASH-01**: Dashboard shows budget snapshot: total budget, total allocated, total spent, remaining
 - [x] **DASH-02**: Dashboard budget totals update when expenses or budget settings change
-- [ ] **DASH-03**: Dashboard shows milestone progress map with status-based visual indicators
+- [x] **DASH-03**: Dashboard shows milestone progress map with status-based visual indicators
 - [x] **DASH-04**: Dashboard is accessible only to authenticated members of that wedding
 
 ### Milestones
 
 - [x] **MILE-01**: 9 default milestones are seeded automatically on wedding creation
-- [ ] **MILE-02**: Either partner can toggle a milestone's status (not_started / in_progress / complete)
-- [ ] **MILE-03**: Either partner can add a custom milestone appended to the list
-- [ ] **MILE-04**: Progress map visually distinguishes all three milestone statuses
+- [x] **MILE-02**: Either partner can toggle a milestone's status (not_started / in_progress / complete)
+- [x] **MILE-03**: Either partner can add a custom milestone appended to the list
+- [x] **MILE-04**: Progress map visually distinguishes all three milestone statuses
 
 ### Decisions
 
@@ -112,12 +112,12 @@
 | COUP-04 | Phase 6 | Pending |
 | DASH-01 | Phase 2 | Complete |
 | DASH-02 | Phase 2 | Complete |
-| DASH-03 | Phase 2 | Pending |
+| DASH-03 | Phase 2 | Complete |
 | DASH-04 | Phase 2 | Complete |
 | MILE-01 | Phase 2 | Complete |
-| MILE-02 | Phase 2 | Pending |
-| MILE-03 | Phase 2 | Pending |
-| MILE-04 | Phase 2 | Pending |
+| MILE-02 | Phase 2 | Complete |
+| MILE-03 | Phase 2 | Complete |
+| MILE-04 | Phase 2 | Complete |
 | DECI-01 | Phase 3 | Pending |
 | DECI-02 | Phase 3 | Pending |
 | DECI-03 | Phase 3 | Pending |

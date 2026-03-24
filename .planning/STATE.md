@@ -4,12 +4,12 @@ milestone: v1.0
 milestone_name: milestone
 current_plan: Not started
 status: unknown
-last_updated: "2026-03-24T05:04:39.362Z"
+last_updated: "2026-03-24T05:35:18.527Z"
 progress:
   total_phases: 7
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 6
-  completed_plans: 5
+  completed_plans: 6
 ---
 
 # Project State
@@ -55,6 +55,8 @@ See: .planning/PROJECT.md (updated 2026-03-07)
 - [Phase 02-dashboard-progress-map]: supabase db reset used instead of db push to apply migration cleanly to local stack (no remote project linked)
 - [Phase 02-dashboard-progress-map]: maybeSingle() used for wedding fetch so missing membership triggers redirect without throwing
 - [Phase 02-dashboard-progress-map]: WelcomeBanner uses instant local dismiss without waiting for server action — UX tolerant of action failure
+- [Phase 02-dashboard-progress-map]: Sort milestones by STATUS_PRIORITY on initial prop only — do NOT re-sort optimistic state to prevent jarring card jumps on badge click
+- [Phase 02-dashboard-progress-map]: Tailwind utility classes used for terracotta palette (bg-terracotta-500) not arbitrary CSS variable syntax (bg-[--color-terracotta-500]) which is invalid
 
 ## Performance Metrics
 
@@ -65,6 +67,7 @@ See: .planning/PROJECT.md (updated 2026-03-07)
 | 01-foundation | 03 | 45min | 3 | 12 |
 | Phase 02-dashboard-progress-map P01 | 8min | 2 tasks | 2 files |
 | Phase 02-dashboard-progress-map P02 | 2min | 2 tasks | 4 files |
+| Phase 02-dashboard-progress-map P03 | 30min | 3 tasks | 3 files |
 
 ## Session Log
 
