@@ -14,8 +14,8 @@ const STATUS_LABELS: Record<MilestoneStatus, string> = {
 };
 
 const STATUS_CLASSES: Record<MilestoneStatus, string> = {
-  complete: "bg-[--color-terracotta-500] text-white",
-  in_progress: "bg-[--color-terracotta-100] text-[--color-terracotta-700]",
+  complete: "bg-terracotta-500 text-white",
+  in_progress: "bg-terracotta-100 text-terracotta-700",
   not_started: "bg-muted text-muted-foreground",
 };
 
