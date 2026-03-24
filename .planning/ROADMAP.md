@@ -34,6 +34,13 @@ Plans:
 
 **Requirements:** DASH-01, DASH-02, DASH-03, DASH-04, MILE-01, MILE-02, MILE-03, MILE-04
 
+**Plans:** 3 plans
+
+Plans:
+- [ ] 02-01-PLAN.md — Apply Phase 2 schema migration (notes column, dismissed_welcome, seed trigger, backfill)
+- [ ] 02-02-PLAN.md — Dashboard server page, budget stat cards, WelcomeBanner
+- [ ] 02-03-PLAN.md — MilestoneGrid + MilestoneCard client components with optimistic toggle, notes, add
+
 **Success Criteria:**
 1. After onboarding, 9 default milestones appear on the dashboard map
 2. Toggling a milestone status (not_started → in_progress → complete) updates the map immediately and persists on refresh
