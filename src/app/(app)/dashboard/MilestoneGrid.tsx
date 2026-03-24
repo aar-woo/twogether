@@ -111,7 +111,7 @@ export function MilestoneGrid({ milestones }: MilestoneGridProps) {
               <div className="flex gap-2">
                 <button
                   onClick={handleAdd}
-                  className="text-xs font-medium px-3 py-1 rounded-md bg-[--color-terracotta-500] text-white hover:opacity-90 transition-opacity"
+                  className="text-xs font-medium px-3 py-1 rounded-md bg-terracotta-500 text-white hover:opacity-90 transition-opacity"
                 >
                   Save
                 </button>
