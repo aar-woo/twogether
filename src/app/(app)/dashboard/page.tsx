@@ -2,6 +2,8 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { WelcomeBanner } from "./WelcomeBanner";
+import { MilestoneGrid } from "./MilestoneGrid";
+import { Milestone } from "../../../../types/index";
 
 const formatCurrency = (value: number) =>
   new Intl.NumberFormat("en-US", {
@@ -31,7 +33,7 @@ export default async function DashboardPage() {
       .select("allocated_amount, expenses(amount, status)"),
   ]);
 
-  const milestones = milestonesRes.data ?? [];
+  const milestones = (milestonesRes.data ?? []) as Milestone[];
   const categories = categoriesRes.data ?? [];
 
   const totalBudget = wedding.total_budget ?? 0;
@@ -55,8 +57,6 @@ export default async function DashboardPage() {
     { label: "Spent", value: spent },
     { label: "Remaining", value: remaining },
   ];
-
-  void milestones; // used by Plan 03
 
   return (
     <div>
@@ -95,7 +95,10 @@ export default async function DashboardPage() {
 
       {!budgetEmpty && <div className="mb-8" />}
 
-      {/* MilestoneGrid placeholder — wired in Plan 03 */}
+      <section>
+        <h2 className="font-serif text-xl text-foreground mb-4">Progress Map</h2>
+        <MilestoneGrid milestones={milestones} />
+      </section>
     </div>
   );
 }
