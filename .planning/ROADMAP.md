@@ -56,7 +56,7 @@ Plans:
 
 **Requirements:** DECI-01, DECI-02, DECI-03, DECI-04, DECI-05, DECI-06, DECI-07, DECI-08
 
-**Plans:** 3 plans
+**Plans:** 1/3 plans executed
 
 Plans:
 - [ ] 03-01-PLAN.md — Schema migration (resolved_option_id FK) + domain types (Decision, Vote, OptionVoteState)

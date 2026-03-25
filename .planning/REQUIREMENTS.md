@@ -34,14 +34,14 @@
 
 ### Decisions
 
-- [ ] **DECI-01**: Either partner can create a decision with a title and category
-- [ ] **DECI-02**: Either partner can add options to any decision at any time
-- [ ] **DECI-03**: Each partner can rate an option 1–10 with an optional comment
-- [ ] **DECI-04**: A partner's rating is hidden from the other until both have voted on that option
-- [ ] **DECI-05**: Once both partners have voted, the compatibility score is displayed
-- [ ] **DECI-06**: If only one partner has voted, only their rating is shown (no score)
-- [ ] **DECI-07**: Either partner can resolve a decision by selecting a winning option
-- [ ] **DECI-08**: Decision queue order persists and can be adjusted via up/down buttons
+- [x] **DECI-01**: Either partner can create a decision with a title and category
+- [x] **DECI-02**: Either partner can add options to any decision at any time
+- [x] **DECI-03**: Each partner can rate an option 1–10 with an optional comment
+- [x] **DECI-04**: A partner's rating is hidden from the other until both have voted on that option
+- [x] **DECI-05**: Once both partners have voted, the compatibility score is displayed
+- [x] **DECI-06**: If only one partner has voted, only their rating is shown (no score)
+- [x] **DECI-07**: Either partner can resolve a decision by selecting a winning option
+- [x] **DECI-08**: Decision queue order persists and can be adjusted via up/down buttons
 
 ### Budget
 
@@ -118,14 +118,14 @@
 | MILE-02 | Phase 2 | Complete |
 | MILE-03 | Phase 2 | Complete |
 | MILE-04 | Phase 2 | Complete |
-| DECI-01 | Phase 3 | Pending |
-| DECI-02 | Phase 3 | Pending |
-| DECI-03 | Phase 3 | Pending |
-| DECI-04 | Phase 3 | Pending |
-| DECI-05 | Phase 3 | Pending |
-| DECI-06 | Phase 3 | Pending |
-| DECI-07 | Phase 3 | Pending |
-| DECI-08 | Phase 3 | Pending |
+| DECI-01 | Phase 3 | Complete |
+| DECI-02 | Phase 3 | Complete |
+| DECI-03 | Phase 3 | Complete |
+| DECI-04 | Phase 3 | Complete |
+| DECI-05 | Phase 3 | Complete |
+| DECI-06 | Phase 3 | Complete |
+| DECI-07 | Phase 3 | Complete |
+| DECI-08 | Phase 3 | Complete |
 | BUDG-01 | Phase 4 | Pending |
 | BUDG-02 | Phase 4 | Pending |
 | BUDG-03 | Phase 4 | Pending |

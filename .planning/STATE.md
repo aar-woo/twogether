@@ -4,12 +4,12 @@ milestone: v1.0
 milestone_name: milestone
 current_plan: Not started
 status: unknown
-last_updated: "2026-03-24T05:42:02.606Z"
+last_updated: "2026-03-25T05:14:23.412Z"
 progress:
   total_phases: 7
   completed_phases: 2
-  total_plans: 6
-  completed_plans: 6
+  total_plans: 9
+  completed_plans: 7
 ---
 
 # Project State
@@ -57,6 +57,8 @@ See: .planning/PROJECT.md (updated 2026-03-07)
 - [Phase 02-dashboard-progress-map]: WelcomeBanner uses instant local dismiss without waiting for server action — UX tolerant of action failure
 - [Phase 02-dashboard-progress-map]: Sort milestones by STATUS_PRIORITY on initial prop only — do NOT re-sort optimistic state to prevent jarring card jumps on badge click
 - [Phase 02-dashboard-progress-map]: Tailwind utility classes used for terracotta palette (bg-terracotta-500) not arbitrary CSS variable syntax (bg-[--color-terracotta-500]) which is invalid
+- [Phase 03-decision-queue-voting]: ON DELETE SET NULL on decisions.resolved_option_id — deleting the winning option reopens the decision rather than cascading deletes
+- [Phase 03-decision-queue-voting]: OptionVoteState union type driven by RLS-visible vote count: 0=unvoted, 1=you_voted, 2=both_voted — no extra RLS complexity needed
 
 ## Performance Metrics
 
@@ -68,6 +70,7 @@ See: .planning/PROJECT.md (updated 2026-03-07)
 | Phase 02-dashboard-progress-map P01 | 8min | 2 tasks | 2 files |
 | Phase 02-dashboard-progress-map P02 | 2min | 2 tasks | 4 files |
 | Phase 02-dashboard-progress-map P03 | 30min | 3 tasks | 3 files |
+| Phase 03-decision-queue-voting P01 | 2min | 2 tasks | 3 files |
 
 ## Session Log
 
