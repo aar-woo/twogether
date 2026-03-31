@@ -2,9 +2,9 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-current_plan: Not started
-status: unknown
-last_updated: "2026-03-25T05:14:23.412Z"
+current_plan: 1
+status: Executing Phase 03
+last_updated: "2026-03-31T05:06:38.190Z"
 progress:
   total_phases: 7
   completed_phases: 2
@@ -19,13 +19,13 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-07)
 
 **Core value:** Both partners vote on decisions independently, with compatibility scores revealing alignment — without seeing each other's ratings first.
-**Current focus:** Phase 1 — Foundation
+**Current focus:** Phase 03 — decision-queue-voting
 
 ## Current Status
 
 **Milestone:** v1
 **Active Phase:** 1 — Foundation
-**Current Plan:** Not started
+**Current Plan:** 1
 **Overall Progress:** 1 / 7 phases complete
 
 ## Phase Status
@@ -59,6 +59,9 @@ See: .planning/PROJECT.md (updated 2026-03-07)
 - [Phase 02-dashboard-progress-map]: Tailwind utility classes used for terracotta palette (bg-terracotta-500) not arbitrary CSS variable syntax (bg-[--color-terracotta-500]) which is invalid
 - [Phase 03-decision-queue-voting]: ON DELETE SET NULL on decisions.resolved_option_id — deleting the winning option reopens the decision rather than cascading deletes
 - [Phase 03-decision-queue-voting]: OptionVoteState union type driven by RLS-visible vote count: 0=unvoted, 1=you_voted, 2=both_voted — no extra RLS complexity needed
+- [Phase 03-decision-queue-voting]: revalidatePath uses actual decision ID string (not /decisions/[id] template) for correct cache invalidation
+- [Phase 03-decision-queue-voting]: upsertVote uses onConflict: option_id,user_id — votes are mutable, re-submit overwrites via UPSERT
+- [Phase 03-decision-queue-voting]: Textarea added via shadcn CLI — was missing from ui/ component set
 
 ## Performance Metrics
 
@@ -81,5 +84,5 @@ See: .planning/PROJECT.md (updated 2026-03-07)
 
 ## Resume Point
 
-Next action: Begin Phase 2 — Dashboard + Progress Map
-Resume file: None
+Next action: 03-03 Task 3 checkpoint — human verification of /decisions/[id] voting flow
+Resume file: .planning/phases/03-decision-queue-voting/03-03-SUMMARY.md
