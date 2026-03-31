@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import { DecisionWithOptions } from "../../../../types/index";
+import { getDecisions } from "./actions";
 import { DecisionQueue } from "./DecisionQueue";
 
 export default async function DecisionsPage() {
@@ -17,22 +17,6 @@ export default async function DecisionsPage() {
 
   if (!wedding) redirect("/onboarding");
 
-  const { data: decisions } = await supabase
-    .from("decisions")
-    .select(`
-      id, title, category, status, sort_order, resolved_option_id, wedding_id, created_at,
-      decision_options (
-        id, label, decision_id, created_at,
-        votes ( id, user_id, rating, option_id, comment, created_at )
-      )
-    `)
-    .order("status", { ascending: true })
-    .order("sort_order", { ascending: true });
-
-  return (
-    <DecisionQueue
-      decisions={(decisions ?? []) as unknown as DecisionWithOptions[]}
-      currentUserId={user.id}
-    />
-  );
+  const { decisions = [] } = await getDecisions(wedding.id);
+  return <DecisionQueue decisions={decisions} currentUserId={user.id} />;
 }

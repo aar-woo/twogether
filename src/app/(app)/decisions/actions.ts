@@ -2,10 +2,42 @@
 
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
+import { DecisionWithOptions } from "../../../../types/index";
+
+export async function getDecisions(weddingId: string): Promise<{
+  decisions?: DecisionWithOptions[];
+  error?: string;
+}> {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return { error: "Not authenticated" };
+
+  const { data: decisions, error } = await supabase
+    .from("decisions")
+    .select(
+      `
+      id, title, category, status, sort_order, resolved_option_id, wedding_id, created_at,
+      decision_options!decision_options_decision_id_fkey (
+        id, label, decision_id, created_at,
+        votes ( id, user_id, rating, option_id, comment, created_at )
+      )
+    `,
+    )
+    .eq("wedding_id", weddingId)
+    .order("status", { ascending: true })
+    .order("sort_order", { ascending: true });
+  if (error) return { error: error.message };
+
+  return {
+    decisions: (decisions ?? []) as unknown as DecisionWithOptions[],
+  };
+}
 
 export async function createDecision(
   title: string,
-  category: string
+  category: string,
 ): Promise<{ error?: string }> {
   try {
     const supabase = await createClient();
@@ -53,7 +85,7 @@ export async function createDecision(
 
 export async function reorderDecision(
   id: string,
-  direction: "up" | "down"
+  direction: "up" | "down",
 ): Promise<{ error?: string }> {
   try {
     const supabase = await createClient();
@@ -71,9 +103,7 @@ export async function reorderDecision(
     if (fetchError || !current) return { error: "Decision not found" };
 
     const neighborOrder =
-      direction === "up"
-        ? current.sort_order - 1
-        : current.sort_order + 1;
+      direction === "up" ? current.sort_order - 1 : current.sort_order + 1;
 
     const { data: neighbor } = await supabase
       .from("decisions")

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
@@ -14,6 +15,7 @@ interface DecisionQueueProps {
 }
 
 export function DecisionQueue({ decisions, currentUserId }: DecisionQueueProps) {
+  const router = useRouter();
   const [isAdding, setIsAdding] = useState(false);
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
@@ -33,6 +35,7 @@ export function DecisionQueue({ decisions, currentUserId }: DecisionQueueProps) 
         setTitle("");
         setCategory("");
         setIsAdding(false);
+        router.refresh();
       }
     });
   }
@@ -46,6 +49,7 @@ export function DecisionQueue({ decisions, currentUserId }: DecisionQueueProps) 
   function handleReorder(id: string, dir: "up" | "down") {
     startTransition(async () => {
       await reorderDecision(id, dir);
+      router.refresh();
     });
   }
 
