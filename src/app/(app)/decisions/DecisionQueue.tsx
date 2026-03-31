@@ -54,7 +54,7 @@ export function DecisionQueue({ decisions, currentUserId }: DecisionQueueProps) 
   }
 
   return (
-    <div>
+    <div className="max-w-2xl mx-auto">
       <div className="flex items-center justify-between mb-6">
         <h1 className="font-serif text-2xl text-foreground">Decisions</h1>
         <Button variant="outline" onClick={() => setIsAdding(true)}>
