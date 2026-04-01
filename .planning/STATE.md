@@ -82,7 +82,15 @@ See: .planning/PROJECT.md (updated 2026-03-07)
 - **2026-03-20**: Completed 01-foundation-02-PLAN.md — Terracotta theme, Playfair Display + Inter fonts, Supabase clients, auth middleware, route group layout shells.
 - **2026-03-19**: Completed 01-foundation-03-PLAN.md — Login/signup/onboarding pages, full AUTH-01 flow verified, RLS fix migration, middleware authenticated-user redirect. Phase 1 Foundation complete.
 
+## Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
+| 260331-rj9 | surface mutation errors and pending state in decisions UI | 2026-04-01 | 4430b0d6 | [260331-rj9-surface-mutation-errors-and-pending-stat](./quick/260331-rj9-surface-mutation-errors-and-pending-stat/) |
+
 ## Resume Point
 
 Next action: 03-03 Task 3 checkpoint — human verification of /decisions/[id] voting flow
 Resume file: .planning/phases/03-decision-queue-voting/03-03-SUMMARY.md
+
+Last activity: 2026-04-01 - Completed quick task 260331-rj9: surface mutation errors and pending state in decisions UI
