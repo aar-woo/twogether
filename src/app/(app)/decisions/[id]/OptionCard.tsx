@@ -14,7 +14,10 @@ function deriveOptionState(votes: Vote[], currentUserId: string): OptionVoteStat
   if (!myVote) return { state: "unvoted" };
   if (!partnerVote) return { state: "you_voted", myVote };
 
-  const score = 100 - Math.abs(myVote.rating - partnerVote.rating) * 10;
+  const avg = (myVote.rating + partnerVote.rating) / 2;
+  let score = Math.round(avg * 10);
+  if (myVote.rating >= 6 && partnerVote.rating >= 6) score = Math.min(100, Math.round(score * 1.1));
+  else if (myVote.rating <= 4 && partnerVote.rating <= 4) score = Math.round(score * 0.85);
   return { state: "both_voted", myVote, partnerVote, score };
 }
 

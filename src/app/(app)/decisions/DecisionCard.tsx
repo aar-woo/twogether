@@ -41,7 +41,10 @@ function getVoteStatusSummary(
 
     if (option.votes.length === 2) {
       const [a, b] = option.votes;
-      const score = 100 - Math.abs(a.rating - b.rating) * 10;
+      const avg = (a.rating + b.rating) / 2;
+      let score = Math.round(avg * 10);
+      if (a.rating >= 6 && b.rating >= 6) score = Math.min(100, Math.round(score * 1.1));
+      else if (a.rating <= 4 && b.rating <= 4) score = Math.round(score * 0.85);
       if (bestScore === null || score > bestScore) {
         bestScore = score;
       }

@@ -122,8 +122,8 @@ export function OptionList({ decision, currentUserId }: OptionListProps) {
         </div>
       ) : (
         <Button
-          variant="ghost"
-          className="mt-2 text-muted-foreground"
+          variant="outline"
+          className="mt-2"
           onClick={() => setIsAdding(true)}
         >
           + Add option
