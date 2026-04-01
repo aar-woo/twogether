@@ -12,6 +12,7 @@ interface DecisionCardProps {
   isFirst: boolean;
   isLast: boolean;
   onReorder: (id: string, dir: "up" | "down") => void;
+  isReordering: boolean;
 }
 
 function getVoteStatusSummary(
@@ -70,6 +71,7 @@ export function DecisionCard({
   isFirst,
   isLast,
   onReorder,
+  isReordering,
 }: DecisionCardProps) {
   const voteStatus = getVoteStatusSummary(decision, currentUserId);
   const isOpen = decision.status === "open";
@@ -98,9 +100,9 @@ export function DecisionCard({
           <div className="flex gap-1 mt-3">
             <Button
               variant="ghost"
-              className={"w-[40px] bg-blue-100 hover:bg-blue-200 text-blue-700"}
+              className={"w-[40px] bg-blue-100 hover:bg-blue-200 text-blue-700" + (isReordering ? " opacity-50" : "")}
               size="sm"
-              disabled={isFirst}
+              disabled={isFirst || isReordering}
               onClick={(e) => {
                 e.stopPropagation();
                 onReorder(decision.id, "up");
@@ -111,10 +113,10 @@ export function DecisionCard({
             <Button
               variant="ghost"
               className={
-                "w-[40px] bg-slate-100 hover:bg-slate-200 text-slate-700"
+                "w-[40px] bg-slate-100 hover:bg-slate-200 text-slate-700" + (isReordering ? " opacity-50" : "")
               }
               size="sm"
-              disabled={isLast}
+              disabled={isLast || isReordering}
               onClick={(e) => {
                 e.stopPropagation();
                 onReorder(decision.id, "down");

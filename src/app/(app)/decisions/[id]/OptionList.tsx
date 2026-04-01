@@ -19,6 +19,8 @@ export function OptionList({ decision, currentUserId }: OptionListProps) {
   const [isAdding, setIsAdding] = useState(false);
   const [newLabel, setNewLabel] = useState("");
   const [, startTransition] = useTransition();
+  const [addError, setAddError] = useState<string | null>(null);
+  const [resolveError, setResolveError] = useState<string | null>(null);
 
   const isOpen = decision.status === "open";
 
@@ -29,11 +31,14 @@ export function OptionList({ decision, currentUserId }: OptionListProps) {
       return;
     }
     startTransition(async () => {
+      setAddError(null);
       const result = await addOption(decision.id, label);
       if (!result?.error) {
         setNewLabel("");
         setIsAdding(false);
         router.refresh();
+      } else {
+        setAddError(result?.error ?? "Failed to add option");
       }
     });
   }
@@ -41,12 +46,18 @@ export function OptionList({ decision, currentUserId }: OptionListProps) {
   function handleCancel() {
     setNewLabel("");
     setIsAdding(false);
+    setAddError(null);
   }
 
   function handleResolve(optionId: string) {
     startTransition(async () => {
-      await resolveDecision(decision.id, optionId);
-      router.refresh();
+      setResolveError(null);
+      const result = await resolveDecision(decision.id, optionId);
+      if (result?.error) {
+        setResolveError(result.error);
+      } else {
+        router.refresh();
+      }
     });
   }
 
@@ -80,6 +91,9 @@ export function OptionList({ decision, currentUserId }: OptionListProps) {
           <span className="text-sm text-muted-foreground">{decision.category}</span>
         )}
       </div>
+
+      {/* Resolve error */}
+      {resolveError && <p className="text-sm text-destructive mb-2">{resolveError}</p>}
 
       {/* Options list */}
       {decision.decision_options.length === 0 && !isAdding ? (
@@ -120,7 +134,9 @@ export function OptionList({ decision, currentUserId }: OptionListProps) {
             Cancel
           </Button>
         </div>
-      ) : (
+      ) : null}
+      {isAdding && addError && <p className="text-sm text-destructive mt-1">{addError}</p>}
+      {!isAdding && (
         <Button
           variant="outline"
           className="mt-2"

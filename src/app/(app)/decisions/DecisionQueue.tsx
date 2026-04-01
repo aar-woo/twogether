@@ -19,7 +19,8 @@ export function DecisionQueue({ decisions, currentUserId }: DecisionQueueProps) 
   const [isAdding, setIsAdding] = useState(false);
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
-  const [, startTransition] = useTransition();
+  const [isPending, startTransition] = useTransition();
+  const [error, setError] = useState<string | null>(null);
 
   const openDecisions = decisions.filter((d) => d.status === "open");
   const resolvedDecisions = decisions.filter((d) => d.status === "resolved");
@@ -29,6 +30,7 @@ export function DecisionQueue({ decisions, currentUserId }: DecisionQueueProps) 
       setIsAdding(false);
       return;
     }
+    setError(null);
     startTransition(async () => {
       const result = await createDecision(title.trim(), category.trim());
       if (!result?.error) {
@@ -36,6 +38,8 @@ export function DecisionQueue({ decisions, currentUserId }: DecisionQueueProps) 
         setCategory("");
         setIsAdding(false);
         router.refresh();
+      } else {
+        setError(result?.error ?? "Failed to create decision");
       }
     });
   }
@@ -44,6 +48,7 @@ export function DecisionQueue({ decisions, currentUserId }: DecisionQueueProps) 
     setTitle("");
     setCategory("");
     setIsAdding(false);
+    setError(null);
   }
 
   function handleReorder(id: string, dir: "up" | "down") {
@@ -84,6 +89,7 @@ export function DecisionQueue({ decisions, currentUserId }: DecisionQueueProps) 
                 Cancel
               </Button>
             </div>
+            {error && <p className="text-sm text-destructive">{error}</p>}
           </CardContent>
         </Card>
       )}
@@ -102,6 +108,7 @@ export function DecisionQueue({ decisions, currentUserId }: DecisionQueueProps) 
               isFirst={index === 0}
               isLast={index === openDecisions.length - 1}
               onReorder={handleReorder}
+              isReordering={isPending}
             />
           ))}
           {resolvedDecisions.map((decision) => (
@@ -112,6 +119,7 @@ export function DecisionQueue({ decisions, currentUserId }: DecisionQueueProps) 
               isFirst={false}
               isLast={false}
               onReorder={handleReorder}
+              isReordering={isPending}
             />
           ))}
         </>
