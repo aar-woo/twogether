@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import { DecisionWithOptions } from "../../../../../types/index";
 import { OptionList } from "./OptionList";
+import { getDecision } from "./actions";
 
 export default async function DecisionDetailPage({
   params,
@@ -23,25 +23,13 @@ export default async function DecisionDetailPage({
 
   if (!wedding) redirect("/onboarding");
 
-  const { data: decision } = await supabase
-    .from("decisions")
-    .select(
-      `
-      id, title, category, status, sort_order, resolved_option_id, created_at, wedding_id,
-      decision_options (
-        id, decision_id, label, created_at,
-        votes ( id, option_id, user_id, rating, comment, created_at )
-      )
-    `
-    )
-    .eq("id", id)
-    .maybeSingle();
+  const { decision, error } = await getDecision(id, wedding.id);
 
-  if (!decision) redirect("/decisions");
+  if (error || !decision) redirect("/decisions");
 
   return (
     <OptionList
-      decision={decision as unknown as DecisionWithOptions}
+      decision={decision}
       currentUserId={user.id}
     />
   );

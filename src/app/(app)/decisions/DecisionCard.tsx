@@ -15,14 +15,14 @@ interface DecisionCardProps {
 
 function getVoteStatusSummary(
   decision: DecisionWithOptions,
-  currentUserId: string
+  currentUserId: string,
 ): string {
   const optionCount = decision.decision_options.length;
 
   if (decision.status === "resolved") {
     const winningOption = decision.resolved_option_id
       ? decision.decision_options.find(
-          (opt) => opt.id === decision.resolved_option_id
+          (opt) => opt.id === decision.resolved_option_id,
         )
       : null;
     const label = winningOption ? winningOption.label : "winner selected";
@@ -34,7 +34,9 @@ function getVoteStatusSummary(
   let currentUserVoted = false;
 
   for (const option of decision.decision_options) {
-    const hasCurrentUser = option.votes.some((v) => v.user_id === currentUserId);
+    const hasCurrentUser = option.votes.some(
+      (v) => v.user_id === currentUserId,
+    );
     if (hasCurrentUser) currentUserVoted = true;
 
     if (option.votes.length === 2) {
@@ -66,13 +68,15 @@ export function DecisionCard({
 }: DecisionCardProps) {
   const voteStatus = getVoteStatusSummary(decision, currentUserId);
   const isOpen = decision.status === "open";
-
+  console.log("decision: ", decision);
   return (
     <Card className="mb-3">
       <CardContent className="p-4">
         <Link href={`/decisions/${decision.id}`} className="block">
           <div className="flex items-center justify-between mb-1">
-            <span className="font-semibold text-foreground">{decision.title}</span>
+            <span className="font-semibold text-foreground">
+              {decision.title}
+            </span>
             <span
               className={
                 isOpen
