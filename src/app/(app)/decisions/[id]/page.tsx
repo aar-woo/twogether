@@ -27,10 +27,5 @@ export default async function DecisionDetailPage({
 
   if (error || !decision) redirect("/decisions");
 
-  return (
-    <OptionList
-      decision={decision}
-      currentUserId={user.id}
-    />
-  );
+  return <OptionList decision={decision} currentUserId={user.id} />;
 }

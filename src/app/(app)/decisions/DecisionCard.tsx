@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { DecisionWithOptions } from "../../../../types/index";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 interface DecisionCardProps {
   decision: DecisionWithOptions;
@@ -43,7 +44,8 @@ function getVoteStatusSummary(
       const [a, b] = option.votes;
       const avg = (a.rating + b.rating) / 2;
       let score = Math.round(avg * 10);
-      if (a.rating >= 6 && b.rating >= 6) score = Math.min(100, Math.round(score * 1.1));
+      if (a.rating >= 6 && b.rating >= 6)
+        score = Math.min(100, Math.round(score * 1.1));
       else if (a.rating <= 4 && b.rating <= 4) score = Math.round(score * 0.85);
       if (bestScore === null || score > bestScore) {
         bestScore = score;
@@ -71,7 +73,6 @@ export function DecisionCard({
 }: DecisionCardProps) {
   const voteStatus = getVoteStatusSummary(decision, currentUserId);
   const isOpen = decision.status === "open";
-  console.log("decision: ", decision);
   return (
     <Card className="mb-3">
       <CardContent className="p-4">
@@ -83,8 +84,8 @@ export function DecisionCard({
             <span
               className={
                 isOpen
-                  ? "text-xs px-2 py-0.5 rounded-full bg-green-100 text-green-700"
-                  : "text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-700"
+                  ? "text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-700"
+                  : "text-xs px-2 py-0.5 rounded-full bg-green-100 text-green-700"
               }
             >
               {isOpen ? "Open" : "Resolved"}
@@ -94,9 +95,10 @@ export function DecisionCard({
         </Link>
 
         {isOpen && (
-          <div className="flex gap-2 mt-3">
+          <div className="flex gap-1 mt-3">
             <Button
               variant="ghost"
+              className={"w-[40px] bg-blue-100 hover:bg-blue-200 text-blue-700"}
               size="sm"
               disabled={isFirst}
               onClick={(e) => {
@@ -104,10 +106,13 @@ export function DecisionCard({
                 onReorder(decision.id, "up");
               }}
             >
-              Up
+              <ChevronUp />
             </Button>
             <Button
               variant="ghost"
+              className={
+                "w-[40px] bg-slate-100 hover:bg-slate-200 text-slate-700"
+              }
               size="sm"
               disabled={isLast}
               onClick={(e) => {
@@ -115,7 +120,7 @@ export function DecisionCard({
                 onReorder(decision.id, "down");
               }}
             >
-              Down
+              <ChevronDown />
             </Button>
           </div>
         )}
