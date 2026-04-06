@@ -56,6 +56,13 @@ Plans:
 
 **Requirements:** DECI-01, DECI-02, DECI-03, DECI-04, DECI-05, DECI-06, DECI-07, DECI-08
 
+**Plans:** 1/3 plans executed
+
+Plans:
+- [ ] 03-01-PLAN.md — Schema migration (resolved_option_id FK) + domain types (Decision, Vote, OptionVoteState)
+- [ ] 03-02-PLAN.md — Queue page: decision list, inline create form, up/down reorder
+- [ ] 03-03-PLAN.md — Detail page: option cards, voting form, compatibility score, add option, resolve
+
 **Success Criteria:**
 1. Partner A creates a decision with 2 options; both appear in the queue
 2. Partner A rates option 1 (rating: 8); Partner B has not voted — no score shown, Partner B's rating not visible
@@ -140,3 +147,4 @@ Plans:
 
 *Roadmap created: 2026-03-07*
 *Updated: 2026-03-07 — Phase 1 plans created (3 plans, 3 waves)*
+*Updated: 2026-03-24 — Phase 3 plans created (3 plans, 3 waves)*

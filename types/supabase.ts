@@ -128,6 +128,13 @@ export type Database = {
         }
         Relationships: [
           {
+            foreignKeyName: "decisions_resolved_option_id_fkey"
+            columns: ["resolved_option_id"]
+            isOneToOne: false
+            referencedRelation: "decision_options"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "decisions_wedding_id_fkey"
             columns: ["wedding_id"]
             isOneToOne: false

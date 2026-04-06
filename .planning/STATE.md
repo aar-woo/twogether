@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-current_plan: Not started
-status: unknown
-last_updated: "2026-03-24T05:42:02.606Z"
+current_plan: 1
+status: Executing Phase 03
+last_updated: "2026-03-31T05:06:38.190Z"
 progress:
   total_phases: 7
   completed_phases: 2
-  total_plans: 6
-  completed_plans: 6
+  total_plans: 9
+  completed_plans: 7
 ---
 
 # Project State
@@ -19,13 +19,13 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-07)
 
 **Core value:** Both partners vote on decisions independently, with compatibility scores revealing alignment — without seeing each other's ratings first.
-**Current focus:** Phase 1 — Foundation
+**Current focus:** Phase 03 — decision-queue-voting
 
 ## Current Status
 
 **Milestone:** v1
 **Active Phase:** 1 — Foundation
-**Current Plan:** Not started
+**Current Plan:** 1
 **Overall Progress:** 1 / 7 phases complete
 
 ## Phase Status
@@ -57,6 +57,11 @@ See: .planning/PROJECT.md (updated 2026-03-07)
 - [Phase 02-dashboard-progress-map]: WelcomeBanner uses instant local dismiss without waiting for server action — UX tolerant of action failure
 - [Phase 02-dashboard-progress-map]: Sort milestones by STATUS_PRIORITY on initial prop only — do NOT re-sort optimistic state to prevent jarring card jumps on badge click
 - [Phase 02-dashboard-progress-map]: Tailwind utility classes used for terracotta palette (bg-terracotta-500) not arbitrary CSS variable syntax (bg-[--color-terracotta-500]) which is invalid
+- [Phase 03-decision-queue-voting]: ON DELETE SET NULL on decisions.resolved_option_id — deleting the winning option reopens the decision rather than cascading deletes
+- [Phase 03-decision-queue-voting]: OptionVoteState union type driven by RLS-visible vote count: 0=unvoted, 1=you_voted, 2=both_voted — no extra RLS complexity needed
+- [Phase 03-decision-queue-voting]: revalidatePath uses actual decision ID string (not /decisions/[id] template) for correct cache invalidation
+- [Phase 03-decision-queue-voting]: upsertVote uses onConflict: option_id,user_id — votes are mutable, re-submit overwrites via UPSERT
+- [Phase 03-decision-queue-voting]: Textarea added via shadcn CLI — was missing from ui/ component set
 
 ## Performance Metrics
 
@@ -68,6 +73,7 @@ See: .planning/PROJECT.md (updated 2026-03-07)
 | Phase 02-dashboard-progress-map P01 | 8min | 2 tasks | 2 files |
 | Phase 02-dashboard-progress-map P02 | 2min | 2 tasks | 4 files |
 | Phase 02-dashboard-progress-map P03 | 30min | 3 tasks | 3 files |
+| Phase 03-decision-queue-voting P01 | 2min | 2 tasks | 3 files |
 
 ## Session Log
 
@@ -76,7 +82,15 @@ See: .planning/PROJECT.md (updated 2026-03-07)
 - **2026-03-20**: Completed 01-foundation-02-PLAN.md — Terracotta theme, Playfair Display + Inter fonts, Supabase clients, auth middleware, route group layout shells.
 - **2026-03-19**: Completed 01-foundation-03-PLAN.md — Login/signup/onboarding pages, full AUTH-01 flow verified, RLS fix migration, middleware authenticated-user redirect. Phase 1 Foundation complete.
 
+## Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
+| 260331-rj9 | surface mutation errors and pending state in decisions UI | 2026-04-01 | 4430b0d6 | [260331-rj9-surface-mutation-errors-and-pending-stat](./quick/260331-rj9-surface-mutation-errors-and-pending-stat/) |
+
 ## Resume Point
 
-Next action: Begin Phase 2 — Dashboard + Progress Map
-Resume file: None
+Next action: 03-03 Task 3 checkpoint — human verification of /decisions/[id] voting flow
+Resume file: .planning/phases/03-decision-queue-voting/03-03-SUMMARY.md
+
+Last activity: 2026-04-01 - Completed quick task 260331-rj9: surface mutation errors and pending state in decisions UI
