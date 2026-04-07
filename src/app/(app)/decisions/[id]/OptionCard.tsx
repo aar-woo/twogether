@@ -26,11 +26,11 @@ function CompatibilityBar({ score }: { score: number }) {
     <div className="flex items-center gap-3 mt-3">
       <div className="flex-1 bg-muted rounded-full h-2 overflow-hidden">
         <div
-          className="h-full bg-terracotta-500 rounded-full transition-all duration-500"
+          className="h-full bg-sage-600 rounded-full transition-all duration-500"
           style={{ width: `${score}%` }}
         />
       </div>
-      <span className="text-sm font-medium text-terracotta-700 shrink-0">
+      <span className="text-sm font-medium text-sage-700 shrink-0">
         {score}% match
       </span>
     </div>
@@ -89,7 +89,7 @@ export function OptionCard({
             variant={selectedRating === n ? "default" : "outline"}
             className={
               selectedRating === n
-                ? "bg-terracotta-500 text-white hover:bg-terracotta-600 border-terracotta-500"
+                ? "bg-sage-600 text-white hover:bg-sage-700 border-sage-600"
                 : ""
             }
             onClick={() => setSelectedRating(n)}
