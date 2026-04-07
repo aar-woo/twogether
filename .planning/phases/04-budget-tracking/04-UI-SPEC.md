@@ -59,12 +59,11 @@ Declared values (multiples of 4 only):
 | md | 16px | Card padding (px-4), section element spacing |
 | lg | 24px | Section vertical gap (mb-6), heading-to-content gap |
 | xl | 32px | Major section separators (mb-8) |
-| 2xl | 48px | Page vertical spacing |
+| 2xl | 48px | Page vertical spacing; accordion header minimum height |
 | 3xl | 64px | Empty state vertical padding |
 
 Exceptions:
-- Touch target minimum 44px height for action buttons in expense rows (accessibility)
-- Accordion header row: 48px minimum height to ensure comfortable click/tap area
+- 44px minimum HEIGHT for action buttons in expense rows — this is a touch target height constraint, not a spacing token. Achieved via `min-h-[44px]` or `py-3` on rows that contain those buttons. Do not use 44px as a gap or padding value elsewhere.
 
 ---
 
@@ -75,13 +74,13 @@ All from the established project type system (source: dashboard/page.tsx, Decisi
 | Role | Size | Weight | Line Height | Font | Usage |
 |------|------|--------|-------------|------|-------|
 | Page heading | 24px (text-2xl) | 400 regular | 1.2 | Playfair Display (font-serif) | "Budget" page title |
-| Section heading | 20px (text-xl) | 400 regular | 1.2 | Playfair Display (font-serif) | Section sub-headings if needed |
 | Body / label | 16px (text-base) | 400 regular | 1.5 | Inter (font-sans) | Category names, expense vendor names, form labels |
 | Caption / metadata | 14px (text-sm) | 400 regular | 1.5 | Inter (font-sans) | Expense date, note, muted helper text, badge text |
-| Stat value | 24px (text-2xl) | 600 semibold | 1.2 | Inter (font-sans) | Summary bar currency amounts (matches dashboard cards) |
-| Stat label | 12px (text-xs) | 500 medium | 1.3 | Inter (font-sans) | Summary bar card labels, uppercase tracking-wide (matches dashboard) |
+| Stat value / stat label | 24px (text-2xl) value / 12px (text-xs) label | 600 semibold (value) / 400 regular (label) | 1.2 | Inter (font-sans) | Summary bar currency amounts (value) and card labels uppercase tracking-wide (label) |
 
-Font weight constraint: 2 weights in use — regular (400) for all body/display content, semibold (600) for numeric stat values only.
+Font weight constraint: exactly 2 weights — regular (400) for all body, display, caption, and stat label content; semibold (600) for numeric stat values only.
+
+Font size set: exactly 4 — 24px, 16px, 14px, 12px. No other sizes permitted in this phase.
 
 ---
 
@@ -94,7 +93,7 @@ Source: globals.css sage green palette + shadcn CSS variable aliases.
 | Dominant surface (60%) | oklch(98.5% 0.005 80) | bg-background | Page background |
 | Secondary surface (30%) | oklch(100% 0 0) | bg-card | Stat cards, accordion header rows, expense row hover surface |
 | Muted surface | oklch(96% 0.008 80) | bg-muted | Collapsed accordion row background, inline form background |
-| Primary (sage-500) | #4A8059 | text-primary, bg-primary | Primary action buttons (Add Category, Save) |
+| Primary (sage-500) | #4A8059 | text-primary, bg-primary | Primary action buttons (Add Category, Save Changes) |
 | Foreground | #1E3325 | text-foreground | All primary text: category names, vendor names, amounts |
 | Muted foreground | #3D6B4A | text-muted-foreground | Secondary text: labels, date, note preview |
 | Border | oklch(88% 0.01 80) | border-border | Card borders, accordion dividers, input borders |
@@ -126,11 +125,15 @@ Accent is NOT used for general interactive states or hover backgrounds.
 
 ## Component Interaction Contracts
 
+### Focal Point
+
+Primary focal point: the summary stat bar — four currency values rendered in `text-2xl font-semibold` (Inter) draw the eye first. All other text in the page sits at 400 weight and 16px or below, creating a clear visual hierarchy where the stat bar anchors attention before the user moves to category management.
+
 ### Summary Stat Bar (BUDG-01, BUDG-06)
 
 Layout: 4-column grid (`grid grid-cols-2 lg:grid-cols-4 gap-4`) mirroring dashboard budget cards exactly.
 
-Cards: Total Budget / Allocated / Spent / Remaining. Reuse shadcn Card + CardHeader + CardContent structure from `dashboard/page.tsx`. Stat value: `text-2xl font-semibold`. Label: `text-xs font-medium text-muted-foreground uppercase tracking-wide`.
+Cards: Total Budget / Allocated / Spent / Remaining. Reuse shadcn Card + CardHeader + CardContent structure from `dashboard/page.tsx`. Stat value: `text-2xl font-semibold`. Label: `text-xs font-normal text-muted-foreground uppercase tracking-wide`.
 
 Currency formatting: `Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0 })` — same helper as dashboard.
 
@@ -148,13 +151,11 @@ Dismiss: Not dismissable — warning stays visible while condition is true.
 
 ### Category Accordion (D-02, D-03)
 
-State: Single-open controlled via `openCategoryId: string | null` — null means all collapsed (default on load per D-03).
+State: Each accordion tracks its own open/closed state independently (multi-open allowed; simpler state model than single-open). All collapsed on load per D-03.
 
-Collapsed header shows: category name (body weight), allocated amount (muted), spent total (muted). Right side: edit icon button, chevron icon (down when collapsed, up when expanded).
+Collapsed header shows: category name (body weight), allocated amount (muted), spent total (muted). Right side: edit icon button (`aria-label="Edit [category name]"`), chevron icon (down when collapsed, up when expanded).
 
 Expanded: body area renders expense list rows + inline add form at bottom.
-
-Opening one accordion does NOT force-close others — each can open/close independently (multi-open allowed; simpler state model than single-open).
 
 Transition: No CSS animation required — conditional render is sufficient.
 
@@ -166,21 +167,21 @@ Form fields:
 - Category name: Input, placeholder "Category name", required
 - Allocated amount: Input type="text" (formatted on blur), placeholder "$0", required
 
-Buttons: `Add Category` (primary, sm) / `Cancel` (ghost, sm). Inline error below buttons on failure.
+Buttons: `Add Category` (primary, sm) / `Discard` (ghost, sm). Inline error below buttons on failure.
 
-Cancel: Collapses form, clears fields, no state change.
+Discard: Collapses form, clears fields, no state change.
 
 Submit: On success — collapses form, clears fields, router.refresh(). On error — shows error message in `text-sm text-destructive`.
 
 ### Category Inline Edit (D-05)
 
-Trigger: Edit icon (lucide `Pencil`, 16px) on the accordion header row. Visible on hover.
+Trigger: Edit icon button (lucide `Pencil`, 16px, `aria-label="Edit [category name]"`) on the accordion header row. Visible on hover.
 
-Edit state: Name and allocated amount fields replace display text in-place in the accordion header. Save / Cancel buttons appear inline.
+Edit state: Name and allocated amount fields replace display text in-place in the accordion header. Save / Discard buttons appear inline.
 
 Save: Calls updateCategory server action, clears `editingCategoryId`, router.refresh(). On error — error text below the fields.
 
-Cancel: Clears `editingCategoryId`, restores display mode, no server call.
+Discard: Clears `editingCategoryId`, restores display mode, no server call.
 
 ### Expense Row Display (BUDG-05)
 
@@ -205,13 +206,13 @@ Optional fields (collapsed under "More details" disclosure — not a modal, just
 - Date: Input type="date"
 - Note: Textarea, placeholder "Optional note", 2 rows
 
-Buttons: `Add Expense` (primary, sm) / `Cancel` (ghost, sm). Inline error on failure.
+Buttons: `Add Expense` (primary, sm) / `Discard` (ghost, sm). Inline error on failure.
 
 ### Expense Inline Edit (D-08)
 
 Trigger: Click anywhere on an expense row (except the delete icon).
 
-Edit state: Row expands into full edit form in place (same fields as add form, pre-filled). Save / Cancel buttons.
+Edit state: Row expands into full edit form in place (same fields as add form, pre-filled). Save Changes / Discard buttons.
 
 One row editable at a time — opening edit on a second row closes the first without saving.
 
@@ -221,9 +222,9 @@ Applies to: category delete, expense delete.
 
 Behavior: Inline confirm pattern — no modal, no toast library.
 
-Category delete: Delete icon (lucide `Trash2`, 16px) on accordion header. Click transitions row to: `[Category name] — Delete category and all expenses? [Delete] [Cancel]`. Text in `text-sm text-destructive`. Confirm button: `variant="destructive" size="sm"`.
+Category delete: Delete icon button (lucide `Trash2`, 16px, `aria-label="Delete [category name]"`) on accordion header. Click transitions row to: `[Category name] — Delete category and all expenses? [Delete Category] [Discard]`. Text in `text-sm text-destructive`. Confirm button: `variant="destructive" size="sm"`.
 
-Expense delete: Delete icon (lucide `Trash2`, 14px) at right edge of expense row, visible on hover. Click transitions the row to: `[vendor name] — Delete expense? [Delete] [Cancel]` inline. Same destructive button style.
+Expense delete: Delete icon button (lucide `Trash2`, 14px, `aria-label="Delete [vendor name] expense"`) at right edge of expense row, visible on hover. Click transitions the row to: `[vendor name] — Delete this expense? [Delete Expense] [Discard]` inline. Same destructive button style.
 
 Rationale: Inline confirm avoids requiring a toast library. The cascade warning for categories (all expenses also deleted) is surfaced in the confirmation copy.
 
@@ -247,17 +248,21 @@ Content:
 | Page heading | "Budget" |
 | Primary CTA | "+ New Category" |
 | Category add form submit | "Add Category" |
-| Category save edit | "Save" |
+| Category save edit | "Save Changes" |
+| Category create form discard | "Discard" |
+| Category edit form discard | "Discard" |
 | Expense add trigger | "+ Add expense" |
 | Expense add form submit | "Add Expense" |
-| Expense save edit | "Save" |
-| Cancel (all contexts) | "Cancel" |
+| Expense save edit | "Save Changes" |
+| Expense add form discard | "Discard" |
+| Expense edit form discard | "Discard" |
 | Empty state heading | "No budget categories yet" |
 | Empty state body | "Add a category to start tracking your wedding expenses." |
 | Over-budget warning | "Allocated total exceeds your budget by [amount]." |
 | Category delete confirmation | "Delete category and all its expenses?" |
+| Category delete confirm button | "Delete Category" |
 | Expense delete confirmation | "Delete this expense?" |
-| Delete button label | "Delete" |
+| Expense delete confirm button | "Delete Expense" |
 | Error — required field missing | "Please fill in all required fields." |
 | Error — invalid amount | "Amount must be a positive number." |
 | Error — server failure | "Something went wrong. Please try again." |
