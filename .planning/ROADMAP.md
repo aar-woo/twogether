@@ -78,6 +78,12 @@ Plans:
 
 **Requirements:** BUDG-01, BUDG-02, BUDG-03, BUDG-04, BUDG-05, BUDG-06
 
+**Plans:** 2 plans
+
+Plans:
+- [ ] 04-01-PLAN.md — Domain types, server actions (CRUD), and budget page Server Component
+- [ ] 04-02-PLAN.md — BudgetClient UI: summary bar, category accordion, expense management, visual verification
+
 **Success Criteria:**
 1. Create 2 categories; when allocated sum exceeds total budget, inline warning appears
 2. Add paid and pending expenses; spent total equals sum of paid expenses only
@@ -148,3 +154,4 @@ Plans:
 *Roadmap created: 2026-03-07*
 *Updated: 2026-03-07 — Phase 1 plans created (3 plans, 3 waves)*
 *Updated: 2026-03-24 — Phase 3 plans created (3 plans, 3 waves)*
+*Updated: 2026-04-06 — Phase 4 plans created (2 plans, 2 waves)*
