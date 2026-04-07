@@ -87,10 +87,11 @@ See: .planning/PROJECT.md (updated 2026-03-07)
 | # | Description | Date | Commit | Directory |
 |---|-------------|------|--------|-----------|
 | 260331-rj9 | surface mutation errors and pending state in decisions UI | 2026-04-01 | 4430b0d6 | [260331-rj9-surface-mutation-errors-and-pending-stat](./quick/260331-rj9-surface-mutation-errors-and-pending-stat/) |
+| 260406-qvk | implement color migration from terracotta to sage green | 2026-04-05 | da73f39d | [260406-qvk-implement-color-migration-from-terracott](./quick/260406-qvk-implement-color-migration-from-terracott/) |
 
 ## Resume Point
 
 Next action: 03-03 Task 3 checkpoint — human verification of /decisions/[id] voting flow
 Resume file: .planning/phases/03-decision-queue-voting/03-03-SUMMARY.md
 
-Last activity: 2026-04-01 - Completed quick task 260331-rj9: surface mutation errors and pending state in decisions UI
+Last activity: 2026-04-05 - Completed quick task 260406-qvk: implement color migration from terracotta to sage green
