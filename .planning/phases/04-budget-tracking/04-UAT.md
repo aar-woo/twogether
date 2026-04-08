@@ -89,29 +89,52 @@ blocked: 0
   reason: "User reported: status selection buttons don't match badge colors — Pending button should be amber"
   severity: cosmetic
   test: 4
-  artifacts: []
-  missing: ["amber active state on Pending toggle button in expense form (bg-amber-100 text-amber-700 when active)"]
+  root_cause: "Both status toggle buttons apply the same active class (bg-sage-500 text-white border-sage-500) — no amber variant for Pending. Both add-expense form (lines 651-670) and edit-expense form (lines 534-554) are affected."
+  artifacts:
+    - path: "src/app/(app)/budget/BudgetClient.tsx"
+      issue: "Pending button active class uses sage-500 instead of amber-100/700"
+  missing:
+    - "Change Pending button active class to bg-amber-100 text-amber-700 border-amber-300 in both form locations"
+  debug_session: .planning/debug/budget-cosmetic-fixes.md
 
 - truth: "Cancel button in delete confirmation is labeled 'Cancel' not 'Discard'"
   status: failed
   reason: "User reported: cancel button says 'Discard' — should say 'Cancel'"
   severity: cosmetic
   test: 9
-  artifacts: []
-  missing: ["rename 'Discard' → 'Cancel' in all delete confirmation inline UI (both expense and category)"]
+  root_cause: "Hardcoded string 'Discard' on cancel buttons in delete confirmations (~line 402 category, ~line 509 expense). Also appears in edit-form cancel buttons throughout file."
+  artifacts:
+    - path: "src/app/(app)/budget/BudgetClient.tsx"
+      issue: "'Discard' hardcoded in delete confirmation cancel buttons at ~lines 402 and 509"
+  missing:
+    - "Replace 'Discard' with 'Cancel' on all cancel buttons in BudgetClient.tsx (delete confirmations + edit forms for consistency)"
+  debug_session: .planning/debug/budget-cosmetic-fixes.md
 
 - truth: "Over-budget warning banner appears when allocated amount exceeds total budget"
   status: failed
   reason: "User reported: no warning banner shown even with $0 total budget and $5,000 allocated — warning condition (allocated > totalBudget) not triggering"
   severity: major
   test: 11
-  artifacts: []
-  missing: ["over-budget warning banner logic — likely suppressed when totalBudget is 0/null instead of treating 0 as a valid threshold"]
+  root_cause: "Line 87 of BudgetClient.tsx: `const isOverAllocated = allocated > wedding.totalBudget && wedding.totalBudget > 0` — the second clause silences the warning whenever totalBudget is 0. With null DB value coerced to 0 by page.tsx, the banner can never render."
+  artifacts:
+    - path: "src/app/(app)/budget/BudgetClient.tsx"
+      issue: "isOverAllocated condition (line 87) guards with `&& wedding.totalBudget > 0`, suppressing banner when budget is unset"
+  missing:
+    - "Remove `&& wedding.totalBudget > 0` guard — condition should simply be `allocated > wedding.totalBudget`"
+  debug_session: .planning/debug/budget-overbudget-warning.md
 
 - truth: "User can set the wedding's total budget amount"
   status: failed
   reason: "User reported: Total Budget defaults to 0 with no way to set it on the budget page"
   severity: major
   test: 3
-  artifacts: []
-  missing: ["Total budget input field or edit control on /budget page (or in settings)"]
+  root_cause: "Feature never planned or built. No updateTotalBudget server action exists anywhere in the codebase. Total Budget stat card in BudgetClient.tsx is display-only with no edit control. Settings page (Phase 6) doesn't exist yet."
+  artifacts:
+    - path: "src/app/(app)/budget/actions.ts"
+      issue: "Missing updateTotalBudget server action — no write path to weddings.total_budget"
+    - path: "src/app/(app)/budget/BudgetClient.tsx"
+      issue: "Total Budget stat card is display-only, no pencil/edit control"
+  missing:
+    - "Add updateTotalBudget(amount: number) server action in actions.ts (update weddings.total_budget via wedding_members lookup)"
+    - "Add inline edit control on Total Budget stat card (pencil → input → save/cancel pattern)"
+  debug_session: .planning/debug/budget-total-budget-setter.md
