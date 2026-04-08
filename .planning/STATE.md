@@ -4,13 +4,13 @@ milestone: v1.0
 milestone_name: milestone
 current_plan: 1
 status: Executing Phase 04
-last_updated: "2026-04-08T04:35:27.523Z"
+last_updated: "2026-04-08T04:39:09.830Z"
 last_activity: 2026-04-08
 progress:
   total_phases: 7
-  completed_phases: 3
+  completed_phases: 4
   total_plans: 11
-  completed_plans: 10
+  completed_plans: 11
 ---
 
 # Project State
@@ -64,6 +64,8 @@ See: .planning/PROJECT.md (updated 2026-03-07)
 - [Phase 03-decision-queue-voting]: upsertVote uses onConflict: option_id,user_id — votes are mutable, re-submit overwrites via UPSERT
 - [Phase 03-decision-queue-voting]: Textarea added via shadcn CLI — was missing from ui/ component set
 - [Phase 04-budget-tracking]: Stub BudgetClient uses intentionally unused props; getCategories performs auth check for RLS consistency
+- [Phase 04-budget-tracking]: border-l-4 border-l-sage-400 used for expanded accordion left indicator (not border-sage-400)
+- [Phase 04-budget-tracking]: Amount parsing strips non-numeric chars with regex to allow dollar-prefixed user input in expense/category forms
 
 ## Performance Metrics
 
@@ -77,6 +79,7 @@ See: .planning/PROJECT.md (updated 2026-03-07)
 | Phase 02-dashboard-progress-map P03 | 30min | 3 tasks | 3 files |
 | Phase 03-decision-queue-voting P01 | 2min | 2 tasks | 3 files |
 | Phase 04-budget-tracking P01 | 2min | 2 tasks | 4 files |
+| Phase 04-budget-tracking P02 | 2min | 1 tasks | 1 files |
 
 ## Session Log
 

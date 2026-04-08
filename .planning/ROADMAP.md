@@ -78,11 +78,11 @@ Plans:
 
 **Requirements:** BUDG-01, BUDG-02, BUDG-03, BUDG-04, BUDG-05, BUDG-06
 
-**Plans:** 1/2 plans executed
+**Plans:** 2/2 plans complete
 
 Plans:
 - [x] 04-01-PLAN.md — Domain types, server actions (CRUD), and budget page Server Component
-- [ ] 04-02-PLAN.md — BudgetClient UI: summary bar, category accordion, expense management, visual verification
+- [x] 04-02-PLAN.md — BudgetClient UI: summary bar, category accordion, expense management, visual verification
 
 **Success Criteria:**
 1. Create 2 categories; when allocated sum exceeds total budget, inline warning appears
