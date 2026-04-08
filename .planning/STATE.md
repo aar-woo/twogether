@@ -3,13 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 current_plan: 1
-status: Executing Phase 03
-last_updated: "2026-03-31T05:06:38.190Z"
+status: Executing Phase 04
+last_updated: "2026-04-08T04:35:27.523Z"
+last_activity: 2026-04-08
 progress:
   total_phases: 7
-  completed_phases: 2
-  total_plans: 9
-  completed_plans: 7
+  completed_phases: 3
+  total_plans: 11
+  completed_plans: 10
 ---
 
 # Project State
@@ -19,7 +20,7 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-07)
 
 **Core value:** Both partners vote on decisions independently, with compatibility scores revealing alignment — without seeing each other's ratings first.
-**Current focus:** Phase 03 — decision-queue-voting
+**Current focus:** Phase 04 — budget-tracking
 
 ## Current Status
 
@@ -62,6 +63,7 @@ See: .planning/PROJECT.md (updated 2026-03-07)
 - [Phase 03-decision-queue-voting]: revalidatePath uses actual decision ID string (not /decisions/[id] template) for correct cache invalidation
 - [Phase 03-decision-queue-voting]: upsertVote uses onConflict: option_id,user_id — votes are mutable, re-submit overwrites via UPSERT
 - [Phase 03-decision-queue-voting]: Textarea added via shadcn CLI — was missing from ui/ component set
+- [Phase 04-budget-tracking]: Stub BudgetClient uses intentionally unused props; getCategories performs auth check for RLS consistency
 
 ## Performance Metrics
 
@@ -74,6 +76,7 @@ See: .planning/PROJECT.md (updated 2026-03-07)
 | Phase 02-dashboard-progress-map P02 | 2min | 2 tasks | 4 files |
 | Phase 02-dashboard-progress-map P03 | 30min | 3 tasks | 3 files |
 | Phase 03-decision-queue-voting P01 | 2min | 2 tasks | 3 files |
+| Phase 04-budget-tracking P01 | 2min | 2 tasks | 4 files |
 
 ## Session Log
 
@@ -92,6 +95,6 @@ See: .planning/PROJECT.md (updated 2026-03-07)
 ## Resume Point
 
 Next action: 03-03 Task 3 checkpoint — human verification of /decisions/[id] voting flow
-Resume file: .planning/phases/03-decision-queue-voting/03-03-SUMMARY.md
+Resume file: None
 
-Last activity: 2026-04-05 - Completed quick task 260406-qvk: implement color migration from terracotta to sage green
+Last activity: 2026-04-08

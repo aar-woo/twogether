@@ -78,10 +78,10 @@ Plans:
 
 **Requirements:** BUDG-01, BUDG-02, BUDG-03, BUDG-04, BUDG-05, BUDG-06
 
-**Plans:** 2 plans
+**Plans:** 1/2 plans executed
 
 Plans:
-- [ ] 04-01-PLAN.md — Domain types, server actions (CRUD), and budget page Server Component
+- [x] 04-01-PLAN.md — Domain types, server actions (CRUD), and budget page Server Component
 - [ ] 04-02-PLAN.md — BudgetClient UI: summary bar, category accordion, expense management, visual verification
 
 **Success Criteria:**
