@@ -4,13 +4,13 @@ milestone: v1.0
 milestone_name: milestone
 current_plan: 1
 status: Executing Phase 04
-last_updated: "2026-04-08T04:39:09.830Z"
+last_updated: "2026-04-08T05:33:39.135Z"
 last_activity: 2026-04-08
 progress:
   total_phases: 7
-  completed_phases: 4
-  total_plans: 11
-  completed_plans: 11
+  completed_phases: 3
+  total_plans: 13
+  completed_plans: 12
 ---
 
 # Project State
@@ -66,6 +66,8 @@ See: .planning/PROJECT.md (updated 2026-03-07)
 - [Phase 04-budget-tracking]: Stub BudgetClient uses intentionally unused props; getCategories performs auth check for RLS consistency
 - [Phase 04-budget-tracking]: border-l-4 border-l-sage-400 used for expanded accordion left indicator (not border-sage-400)
 - [Phase 04-budget-tracking]: Amount parsing strips non-numeric chars with regex to allow dollar-prefixed user input in expense/category forms
+- [Phase 04-budget-tracking]: isOverAllocated simplified to allocated > totalBudget (removed zero-budget guard)
+- [Phase 04-budget-tracking]: Pending toggle uses amber-100/700/300, Paid keeps sage-500 for distinct visual states
 
 ## Performance Metrics
 
@@ -80,6 +82,7 @@ See: .planning/PROJECT.md (updated 2026-03-07)
 | Phase 03-decision-queue-voting P01 | 2min | 2 tasks | 3 files |
 | Phase 04-budget-tracking P01 | 2min | 2 tasks | 4 files |
 | Phase 04-budget-tracking P02 | 2min | 1 tasks | 1 files |
+| Phase 04-budget-tracking P03 | 2min | 2 tasks | 1 files |
 
 ## Session Log
 
