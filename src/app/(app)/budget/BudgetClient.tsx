@@ -84,7 +84,7 @@ export function BudgetClient({ wedding, categories }: BudgetClientProps) {
     .filter((e) => e.status === "paid")
     .reduce((sum, e) => sum + (e.amount ?? 0), 0);
   const remaining = wedding.totalBudget - spent;
-  const isOverAllocated = allocated > wedding.totalBudget && wedding.totalBudget > 0;
+  const isOverAllocated = allocated > wedding.totalBudget;
 
   // Toggle accordion
   function toggleCategory(id: string) {
@@ -535,7 +535,7 @@ export function BudgetClient({ wedding, categories }: BudgetClientProps) {
                               <button
                                 className={`px-3 py-1 rounded text-sm border ${
                                   editExpStatus === "pending"
-                                    ? "bg-sage-500 text-white border-sage-500"
+                                    ? "bg-amber-100 text-amber-700 border-amber-300"
                                     : "border border-border text-muted-foreground"
                                 }`}
                                 onClick={() => setEditExpStatus("pending")}
@@ -651,7 +651,7 @@ export function BudgetClient({ wedding, categories }: BudgetClientProps) {
                         <button
                           className={`px-3 py-1 rounded text-sm border ${
                             expStatus === "pending"
-                              ? "bg-sage-500 text-white border-sage-500"
+                              ? "bg-amber-100 text-amber-700 border-amber-300"
                               : "border border-border text-muted-foreground"
                           }`}
                           onClick={() => setExpStatus("pending")}
