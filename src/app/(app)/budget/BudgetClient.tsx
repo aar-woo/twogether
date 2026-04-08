@@ -346,7 +346,7 @@ export function BudgetClient({ wedding, categories }: BudgetClientProps) {
                 Add Category
               </Button>
               <Button variant="ghost" size="sm" onClick={handleCancelCategory}>
-                Discard
+                Cancel
               </Button>
             </div>
             {error && <p className="text-sm text-destructive">{error}</p>}
@@ -399,7 +399,7 @@ export function BudgetClient({ wedding, categories }: BudgetClientProps) {
                       size="sm"
                       onClick={() => setDeletingCategoryId(null)}
                     >
-                      Discard
+                      Cancel
                     </Button>
                   </div>
                 </div>
@@ -426,7 +426,7 @@ export function BudgetClient({ wedding, categories }: BudgetClientProps) {
                       size="sm"
                       onClick={() => setEditingCategoryId(null)}
                     >
-                      Discard
+                      Cancel
                     </Button>
                   </div>
                   {error && <p className="text-sm text-destructive">{error}</p>}
@@ -507,7 +507,7 @@ export function BudgetClient({ wedding, categories }: BudgetClientProps) {
                                 size="sm"
                                 onClick={() => setDeletingExpenseId(null)}
                               >
-                                Discard
+                                Cancel
                               </Button>
                             </div>
                           </div>
@@ -573,7 +573,7 @@ export function BudgetClient({ wedding, categories }: BudgetClientProps) {
                                 size="sm"
                                 onClick={() => setEditingExpenseId(null)}
                               >
-                                Discard
+                                Cancel
                               </Button>
                             </div>
                             {error && <p className="text-sm text-destructive">{error}</p>}
@@ -697,7 +697,7 @@ export function BudgetClient({ wedding, categories }: BudgetClientProps) {
                           Add Expense
                         </Button>
                         <Button variant="ghost" size="sm" onClick={handleCancelExpense}>
-                          Discard
+                          Cancel
                         </Button>
                       </div>
                       {error && <p className="text-sm text-destructive">{error}</p>}
