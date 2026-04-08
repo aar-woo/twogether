@@ -14,6 +14,7 @@ import {
   createExpense,
   updateExpense,
   deleteExpense,
+  updateTotalBudget,
 } from "./actions";
 import { CategoryWithExpenses, ExpenseStatus } from "../../../../types/index";
 
@@ -76,6 +77,10 @@ export function BudgetClient({ wedding, categories }: BudgetClientProps) {
 
   // Error state
   const [error, setError] = useState<string | null>(null);
+
+  // Total Budget edit state
+  const [isEditingTotalBudget, setIsEditingTotalBudget] = useState(false);
+  const [totalBudgetInput, setTotalBudgetInput] = useState("");
 
   // Computed values
   const allocated = categories.reduce((sum, c) => sum + (c.allocated_amount ?? 0), 0);
@@ -279,12 +284,23 @@ export function BudgetClient({ wedding, categories }: BudgetClientProps) {
     });
   }
 
-  const budgetCards = [
-    { label: "Total Budget", value: wedding.totalBudget },
-    { label: "Allocated", value: allocated },
-    { label: "Spent", value: spent },
-    { label: "Remaining", value: remaining },
-  ];
+  function handleSaveTotalBudget() {
+    const parsed = parseAmount(totalBudgetInput);
+    if (isNaN(parsed) || parsed < 0) {
+      setError("Amount must be a positive number.");
+      return;
+    }
+    setError(null);
+    startTransition(async () => {
+      const result = await updateTotalBudget(parsed);
+      if (!result?.error) {
+        setIsEditingTotalBudget(false);
+        router.refresh();
+      } else {
+        setError(result.error);
+      }
+    });
+  }
 
   return (
     <div>
@@ -292,7 +308,70 @@ export function BudgetClient({ wedding, categories }: BudgetClientProps) {
 
       {/* Summary stat bar */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-        {budgetCards.map(({ label, value }) => (
+
+        {/* Total Budget card — inline editable */}
+        <Card>
+          <CardHeader className="pb-1 pt-4 px-4">
+            <CardTitle className="text-xs font-normal text-muted-foreground uppercase tracking-wide">
+              Total Budget
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="pb-4 px-4">
+            {isEditingTotalBudget ? (
+              <div className="space-y-2">
+                <Input
+                  value={totalBudgetInput}
+                  onChange={(e) => setTotalBudgetInput(e.target.value)}
+                  placeholder="$0"
+                  className="h-8 text-sm"
+                  autoFocus
+                />
+                <div className="flex gap-1">
+                  <Button size="sm" className="h-7 text-xs px-2" onClick={handleSaveTotalBudget}>
+                    Save
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-7 text-xs px-2"
+                    onClick={() => {
+                      setIsEditingTotalBudget(false);
+                      setTotalBudgetInput("");
+                      setError(null);
+                    }}
+                  >
+                    Cancel
+                  </Button>
+                </div>
+                {error && <p className="text-sm text-destructive">{error}</p>}
+              </div>
+            ) : (
+              <div className="flex items-center gap-2 group">
+                <span className="text-2xl font-semibold text-foreground">
+                  {formatCurrency(wedding.totalBudget)}
+                </span>
+                <button
+                  aria-label="Edit total budget"
+                  className="p-1 hover:bg-muted rounded opacity-0 group-hover:opacity-100 transition-opacity"
+                  onClick={() => {
+                    setTotalBudgetInput(wedding.totalBudget === 0 ? "" : String(wedding.totalBudget));
+                    setIsEditingTotalBudget(true);
+                    setError(null);
+                  }}
+                >
+                  <Pencil className="h-3.5 w-3.5 text-muted-foreground" />
+                </button>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+
+        {/* Remaining 3 stat cards — display only */}
+        {[
+          { label: "Allocated", value: allocated },
+          { label: "Spent", value: spent },
+          { label: "Remaining", value: remaining },
+        ].map(({ label, value }) => (
           <Card key={label}>
             <CardHeader className="pb-1 pt-4 px-4">
               <CardTitle className="text-xs font-normal text-muted-foreground uppercase tracking-wide">
@@ -306,6 +385,7 @@ export function BudgetClient({ wedding, categories }: BudgetClientProps) {
             </CardContent>
           </Card>
         ))}
+
       </div>
 
       {/* Over-budget warning */}
