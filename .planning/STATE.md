@@ -4,13 +4,13 @@ milestone: v1.0
 milestone_name: milestone
 current_plan: 1
 status: Executing Phase 05
-last_updated: "2026-04-09T06:03:06.775Z"
+last_updated: "2026-04-09T06:06:28.238Z"
 last_activity: 2026-04-09
 progress:
   total_phases: 7
-  completed_phases: 4
+  completed_phases: 5
   total_plans: 15
-  completed_plans: 14
+  completed_plans: 15
 ---
 
 # Project State
@@ -72,6 +72,8 @@ See: .planning/PROJECT.md (updated 2026-03-07)
 - [Phase 04-budget-tracking]: Total Budget stat card broken out of generic budgetCards.map() loop; other 3 stat cards remain in generic map
 - [Phase 05-guest-list]: GuestSide = Bride | Groom | Both; GuestRelationship = Family | Friend | Colleague | Plus One predefined dropdowns
 - [Phase 05-guest-list]: updateGuest relies on RLS for wedding membership enforcement — no redundant wedding_id check in action
+- [Phase 05-guest-list]: GuestClient uses guestReducer function with useOptimistic for type-safe add/update/delete optimistic state
+- [Phase 05-guest-list]: Summary counts derived exclusively from optimisticGuests to ensure instant updates on all mutations
 
 ## Performance Metrics
 
@@ -89,6 +91,7 @@ See: .planning/PROJECT.md (updated 2026-03-07)
 | Phase 04-budget-tracking P03 | 2min | 2 tasks | 1 files |
 | Phase 04-budget-tracking P04 | 15min | 3 tasks | 2 files |
 | Phase 05-guest-list P01 | 8min | 2 tasks | 5 files |
+| Phase 05-guest-list P02 | 2min | 1 tasks | 1 files |
 
 ## Session Log
 

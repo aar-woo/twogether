@@ -105,7 +105,7 @@ Plans:
 
 Plans:
 - [x] 05-01-PLAN.md — Domain types, server actions (CRUD), page server component, install shadcn Select
-- [ ] 05-02-PLAN.md — GuestClient UI: table with inline add/edit, invited toggle, summary section
+- [x] 05-02-PLAN.md — GuestClient UI: table with inline add/edit, invited toggle, summary section
 
 **Success Criteria:**
 1. Add 5 guests with varied side/relationship values; all summary counts are correct
