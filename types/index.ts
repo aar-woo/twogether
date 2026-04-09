@@ -75,3 +75,29 @@ export type OptionVoteState =
   | { state: "unvoted" }
   | { state: "you_voted"; myVote: Vote }
   | { state: "both_voted"; myVote: Vote; partnerVote: Vote; score: number };
+
+// Budget tracking types
+export type ExpenseStatus = "paid" | "pending";
+
+export interface BudgetCategory {
+  id: string;
+  wedding_id: string;
+  name: string;
+  allocated_amount: number;
+  created_at: string | null;
+}
+
+export interface Expense {
+  id: string;
+  budget_category_id: string;
+  vendor_name: string;
+  amount: number;
+  date: string | null;
+  status: ExpenseStatus;
+  note: string | null;
+  created_at: string | null;
+}
+
+export interface CategoryWithExpenses extends BudgetCategory {
+  expenses: Expense[];
+}

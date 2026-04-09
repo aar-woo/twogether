@@ -2,14 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-current_plan: 1
-status: Executing Phase 03
-last_updated: "2026-03-31T05:06:38.190Z"
+current_plan: Not started
+status: Ready to plan
+last_updated: "2026-04-09T03:07:08.226Z"
+last_activity: 2026-04-09
 progress:
   total_phases: 7
-  completed_phases: 2
-  total_plans: 9
-  completed_plans: 7
+  completed_phases: 4
+  total_plans: 13
+  completed_plans: 13
 ---
 
 # Project State
@@ -19,13 +20,13 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-07)
 
 **Core value:** Both partners vote on decisions independently, with compatibility scores revealing alignment — without seeing each other's ratings first.
-**Current focus:** Phase 03 — decision-queue-voting
+**Current focus:** Phase 04 — budget-tracking
 
 ## Current Status
 
 **Milestone:** v1
 **Active Phase:** 1 — Foundation
-**Current Plan:** 1
+**Current Plan:** Not started
 **Overall Progress:** 1 / 7 phases complete
 
 ## Phase Status
@@ -62,6 +63,13 @@ See: .planning/PROJECT.md (updated 2026-03-07)
 - [Phase 03-decision-queue-voting]: revalidatePath uses actual decision ID string (not /decisions/[id] template) for correct cache invalidation
 - [Phase 03-decision-queue-voting]: upsertVote uses onConflict: option_id,user_id — votes are mutable, re-submit overwrites via UPSERT
 - [Phase 03-decision-queue-voting]: Textarea added via shadcn CLI — was missing from ui/ component set
+- [Phase 04-budget-tracking]: Stub BudgetClient uses intentionally unused props; getCategories performs auth check for RLS consistency
+- [Phase 04-budget-tracking]: border-l-4 border-l-sage-400 used for expanded accordion left indicator (not border-sage-400)
+- [Phase 04-budget-tracking]: Amount parsing strips non-numeric chars with regex to allow dollar-prefixed user input in expense/category forms
+- [Phase 04-budget-tracking]: isOverAllocated simplified to allocated > totalBudget (removed zero-budget guard)
+- [Phase 04-budget-tracking]: Pending toggle uses amber-100/700/300, Paid keeps sage-500 for distinct visual states
+- [Phase 04-budget-tracking]: updateTotalBudget accepts weddingId directly from client instead of re-deriving via wedding_members join — RLS on weddings enforces membership, making the join redundant
+- [Phase 04-budget-tracking]: Total Budget stat card broken out of generic budgetCards.map() loop; other 3 stat cards remain in generic map
 
 ## Performance Metrics
 
@@ -74,6 +82,10 @@ See: .planning/PROJECT.md (updated 2026-03-07)
 | Phase 02-dashboard-progress-map P02 | 2min | 2 tasks | 4 files |
 | Phase 02-dashboard-progress-map P03 | 30min | 3 tasks | 3 files |
 | Phase 03-decision-queue-voting P01 | 2min | 2 tasks | 3 files |
+| Phase 04-budget-tracking P01 | 2min | 2 tasks | 4 files |
+| Phase 04-budget-tracking P02 | 2min | 1 tasks | 1 files |
+| Phase 04-budget-tracking P03 | 2min | 2 tasks | 1 files |
+| Phase 04-budget-tracking P04 | 15min | 3 tasks | 2 files |
 
 ## Session Log
 
@@ -92,6 +104,6 @@ See: .planning/PROJECT.md (updated 2026-03-07)
 ## Resume Point
 
 Next action: 03-03 Task 3 checkpoint — human verification of /decisions/[id] voting flow
-Resume file: .planning/phases/03-decision-queue-voting/03-03-SUMMARY.md
+Resume file: None
 
-Last activity: 2026-04-05 - Completed quick task 260406-qvk: implement color migration from terracotta to sage green
+Last activity: 2026-04-09

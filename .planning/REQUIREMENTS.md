@@ -45,12 +45,12 @@
 
 ### Budget
 
-- [ ] **BUDG-01**: Couple can create budget categories with a name and allocated amount
-- [ ] **BUDG-02**: Inline warning appears when sum of allocated amounts exceeds total budget
-- [ ] **BUDG-03**: Expenses can be added within a category (vendor name, amount, date, status, note)
-- [ ] **BUDG-04**: Expenses can be edited and deleted
-- [ ] **BUDG-05**: Paid vs pending expenses are visually distinct
-- [ ] **BUDG-06**: Dashboard budget totals reflect current category and expense data
+- [x] **BUDG-01**: Couple can create budget categories with a name and allocated amount
+- [x] **BUDG-02**: Inline warning appears when sum of allocated amounts exceeds total budget
+- [x] **BUDG-03**: Expenses can be added within a category (vendor name, amount, date, status, note)
+- [x] **BUDG-04**: Expenses can be edited and deleted
+- [x] **BUDG-05**: Paid vs pending expenses are visually distinct
+- [x] **BUDG-06**: Dashboard budget totals reflect current category and expense data
 
 ### Guests
 
@@ -126,12 +126,12 @@
 | DECI-06 | Phase 3 | Complete |
 | DECI-07 | Phase 3 | Complete |
 | DECI-08 | Phase 3 | Complete |
-| BUDG-01 | Phase 4 | Pending |
-| BUDG-02 | Phase 4 | Pending |
-| BUDG-03 | Phase 4 | Pending |
-| BUDG-04 | Phase 4 | Pending |
-| BUDG-05 | Phase 4 | Pending |
-| BUDG-06 | Phase 4 | Pending |
+| BUDG-01 | Phase 4 | Complete |
+| BUDG-02 | Phase 4 | Complete |
+| BUDG-03 | Phase 4 | Complete |
+| BUDG-04 | Phase 4 | Complete |
+| BUDG-05 | Phase 4 | Complete |
+| BUDG-06 | Phase 4 | Complete |
 | GUES-01 | Phase 5 | Pending |
 | GUES-02 | Phase 5 | Pending |
 | GUES-03 | Phase 5 | Pending |
