@@ -101,6 +101,12 @@ Plans:
 
 **Requirements:** GUES-01, GUES-02, GUES-03
 
+**Plans:** 2 plans
+
+Plans:
+- [ ] 05-01-PLAN.md — Domain types, server actions (CRUD), page server component, install shadcn Select
+- [ ] 05-02-PLAN.md — GuestClient UI: table with inline add/edit, invited toggle, summary section
+
 **Success Criteria:**
 1. Add 5 guests with varied side/relationship values; all summary counts are correct
 2. Toggle `invited` on a guest; total invited count updates immediately
@@ -157,3 +163,4 @@ Plans:
 *Updated: 2026-03-07 — Phase 1 plans created (3 plans, 3 waves)*
 *Updated: 2026-03-24 — Phase 3 plans created (3 plans, 3 waves)*
 *Updated: 2026-04-06 — Phase 4 plans created (2 plans, 2 waves)*
+*Updated: 2026-04-08 — Phase 5 plans created (2 plans, 2 waves)*
