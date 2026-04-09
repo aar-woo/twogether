@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState, useTransition, useOptimistic } from "react";
 import { useRouter } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -82,14 +82,42 @@ export function BudgetClient({ wedding, categories }: BudgetClientProps) {
   const [isEditingTotalBudget, setIsEditingTotalBudget] = useState(false);
   const [totalBudgetInput, setTotalBudgetInput] = useState("");
 
-  // Computed values
-  const allocated = categories.reduce((sum, c) => sum + (c.allocated_amount ?? 0), 0);
+  // Optimistic display state — reverts automatically if the action fails
+  const [displayTotalBudget, setOptimisticTotalBudget] = useOptimistic(wedding.totalBudget);
+  const [optimisticCategories, setOptimisticCategories] = useOptimistic(
+    new Map<string, { name: string; allocated_amount: number }>(),
+    (prev, update: { id: string; name: string; allocated_amount: number }) => {
+      const next = new Map(prev);
+      next.set(update.id, { name: update.name, allocated_amount: update.allocated_amount });
+      return next;
+    },
+  );
+  const [optimisticExpenses, setOptimisticExpenses] = useOptimistic(
+    new Map<string, { vendor_name: string; amount: number; status: ExpenseStatus; date: string | null; note: string | null }>(),
+    (prev, update: { id: string; vendor_name: string; amount: number; status: ExpenseStatus; date: string | null; note: string | null }) => {
+      const next = new Map(prev);
+      next.set(update.id, { vendor_name: update.vendor_name, amount: update.amount, status: update.status, date: update.date, note: update.note });
+      return next;
+    },
+  );
+
+  // Computed values — use optimistic overrides where present
+  const allocated = categories.reduce((sum, c) => {
+    const opt = optimisticCategories.get(c.id);
+    return sum + ((opt?.allocated_amount ?? c.allocated_amount) ?? 0);
+  }, 0);
   const spent = categories
     .flatMap((c) => c.expenses ?? [])
-    .filter((e) => e.status === "paid")
-    .reduce((sum, e) => sum + (e.amount ?? 0), 0);
-  const remaining = wedding.totalBudget - spent;
-  const isOverAllocated = allocated > wedding.totalBudget;
+    .filter((e) => {
+      const opt = optimisticExpenses.get(e.id);
+      return (opt?.status ?? e.status) === "paid";
+    })
+    .reduce((sum, e) => {
+      const opt = optimisticExpenses.get(e.id);
+      return sum + ((opt?.amount ?? e.amount) ?? 0);
+    }, 0);
+  const remaining = displayTotalBudget - spent;
+  const isOverAllocated = allocated > displayTotalBudget;
 
   // Toggle accordion
   function toggleCategory(id: string) {
@@ -156,6 +184,7 @@ export function BudgetClient({ wedding, categories }: BudgetClientProps) {
     }
     setError(null);
     startTransition(async () => {
+      setOptimisticCategories({ id, name: editCatName.trim(), allocated_amount: parsed });
       const result = await updateCategory(id, editCatName.trim(), parsed);
       if (!result?.error) {
         setEditingCategoryId(null);
@@ -255,6 +284,7 @@ export function BudgetClient({ wedding, categories }: BudgetClientProps) {
     }
     setError(null);
     startTransition(async () => {
+      setOptimisticExpenses({ id, vendor_name: editExpVendor.trim(), amount: parsed, status: editExpStatus, date: editExpDate || null, note: editExpNote || null });
       const result = await updateExpense(
         id,
         editExpVendor.trim(),
@@ -292,6 +322,7 @@ export function BudgetClient({ wedding, categories }: BudgetClientProps) {
     }
     setError(null);
     startTransition(async () => {
+      setOptimisticTotalBudget(parsed);
       const result = await updateTotalBudget(wedding.id, parsed);
       if (!result?.error) {
         setIsEditingTotalBudget(false);
@@ -348,13 +379,13 @@ export function BudgetClient({ wedding, categories }: BudgetClientProps) {
             ) : (
               <div className="flex items-center gap-2 group">
                 <span className="text-2xl font-semibold text-foreground">
-                  {formatCurrency(wedding.totalBudget)}
+                  {formatCurrency(displayTotalBudget)}
                 </span>
                 <button
                   aria-label="Edit total budget"
                   className="p-1 hover:bg-muted rounded opacity-0 group-hover:opacity-100 transition-opacity"
                   onClick={() => {
-                    setTotalBudgetInput(wedding.totalBudget === 0 ? "" : String(wedding.totalBudget));
+                    setTotalBudgetInput(displayTotalBudget === 0 ? "" : String(displayTotalBudget));
                     setIsEditingTotalBudget(true);
                     setError(null);
                   }}
@@ -451,9 +482,18 @@ export function BudgetClient({ wedding, categories }: BudgetClientProps) {
           const isOpen = openCategories.has(category.id);
           const isEditing = editingCategoryId === category.id;
           const isDeleting = deletingCategoryId === category.id;
+          const optCat = optimisticCategories.get(category.id);
+          const displayCatName = optCat?.name ?? category.name;
+          const displayCatAllocated = optCat?.allocated_amount ?? category.allocated_amount;
           const catSpent = (category.expenses ?? [])
-            .filter((e) => e.status === "paid")
-            .reduce((sum, e) => sum + (e.amount ?? 0), 0);
+            .filter((e) => {
+              const optE = optimisticExpenses.get(e.id);
+              return (optE?.status ?? e.status) === "paid";
+            })
+            .reduce((sum, e) => {
+              const optE = optimisticExpenses.get(e.id);
+              return sum + ((optE?.amount ?? e.amount) ?? 0);
+            }, 0);
 
           return (
             <div
@@ -464,7 +504,7 @@ export function BudgetClient({ wedding, categories }: BudgetClientProps) {
               {isDeleting ? (
                 <div className="flex items-center justify-between px-4 py-3 gap-3 flex-wrap">
                   <span className="text-sm text-destructive">
-                    {category.name} — Delete category and all its expenses?
+                    {displayCatName} — Delete category and all its expenses?
                   </span>
                   <div className="flex gap-2">
                     <Button
@@ -517,9 +557,9 @@ export function BudgetClient({ wedding, categories }: BudgetClientProps) {
                   onClick={() => toggleCategory(category.id)}
                 >
                   <div className="flex items-center gap-4 min-w-0">
-                    <span className="text-base text-foreground truncate">{category.name}</span>
+                    <span className="text-base text-foreground truncate">{displayCatName}</span>
                     <span className="text-sm text-muted-foreground whitespace-nowrap">
-                      Allocated: {formatCurrency(category.allocated_amount)}
+                      Allocated: {formatCurrency(displayCatAllocated)}
                     </span>
                     <span className="text-sm text-muted-foreground whitespace-nowrap">
                       Spent: {formatCurrency(catSpent)}
@@ -527,11 +567,11 @@ export function BudgetClient({ wedding, categories }: BudgetClientProps) {
                   </div>
                   <div className="flex items-center gap-2 ml-2 shrink-0">
                     <button
-                      aria-label={`Edit ${category.name}`}
+                      aria-label={`Edit ${displayCatName}`}
                       className="p-1 hover:bg-muted rounded"
                       onClick={(e) => {
                         e.stopPropagation();
-                        handleStartEditCategory(category);
+                        handleStartEditCategory({ id: category.id, name: displayCatName, allocated_amount: displayCatAllocated });
                       }}
                     >
                       <Pencil className="h-4 w-4 text-muted-foreground" />
@@ -564,6 +604,8 @@ export function BudgetClient({ wedding, categories }: BudgetClientProps) {
                     {(category.expenses ?? []).map((expense) => {
                       const isEditingExp = editingExpenseId === expense.id;
                       const isDeletingExp = deletingExpenseId === expense.id;
+                      const optExpEarly = optimisticExpenses.get(expense.id);
+                      const displayExpVendorEarly = optExpEarly?.vendor_name ?? expense.vendor_name;
 
                       if (isDeletingExp) {
                         return (
@@ -572,7 +614,7 @@ export function BudgetClient({ wedding, categories }: BudgetClientProps) {
                             className="flex items-center justify-between px-4 py-3 gap-3 flex-wrap"
                           >
                             <span className="text-sm text-destructive">
-                              {expense.vendor_name} — Delete this expense?
+                              {displayExpVendorEarly} — Delete this expense?
                             </span>
                             <div className="flex gap-2">
                               <Button
@@ -661,34 +703,48 @@ export function BudgetClient({ wedding, categories }: BudgetClientProps) {
                         );
                       }
 
+                      const optExp = optimisticExpenses.get(expense.id);
+                      const displayExpVendor = optExp?.vendor_name ?? expense.vendor_name;
+                      const displayExpAmount = optExp?.amount ?? expense.amount;
+                      const displayExpStatus = optExp?.status ?? expense.status;
+                      const displayExpDate = optExp !== undefined ? optExp.date : expense.date;
+                      const displayExpNote = optExp !== undefined ? optExp.note : expense.note;
+
                       return (
                         <div key={expense.id}>
                           <div
                             className="flex items-center gap-3 px-4 py-3 hover:bg-muted cursor-pointer"
-                            onClick={() => handleStartEditExpense(expense)}
+                            onClick={() => handleStartEditExpense({
+                              id: expense.id,
+                              vendor_name: displayExpVendor,
+                              amount: displayExpAmount,
+                              status: displayExpStatus,
+                              date: displayExpDate,
+                              note: displayExpNote,
+                            })}
                           >
                             <span className="text-base text-foreground flex-1 truncate">
-                              {expense.vendor_name}
+                              {displayExpVendor}
                             </span>
                             <span className="text-base text-foreground whitespace-nowrap">
-                              {formatCurrency(expense.amount)}
+                              {formatCurrency(displayExpAmount)}
                             </span>
                             <span
                               className={`text-xs px-2 py-0.5 rounded-full whitespace-nowrap ${
-                                expense.status === "paid"
+                                displayExpStatus === "paid"
                                   ? "bg-sage-100 text-sage-700"
                                   : "bg-amber-100 text-amber-700"
                               }`}
                             >
-                              {expense.status === "paid" ? "Paid" : "Pending"}
+                              {displayExpStatus === "paid" ? "Paid" : "Pending"}
                             </span>
-                            {expense.date && (
+                            {displayExpDate && (
                               <span className="text-sm text-muted-foreground whitespace-nowrap">
-                                {expense.date}
+                                {displayExpDate}
                               </span>
                             )}
                             <button
-                              aria-label={`Delete ${expense.vendor_name} expense`}
+                              aria-label={`Delete ${displayExpVendor} expense`}
                               className="p-1 hover:bg-muted rounded ml-auto shrink-0"
                               onClick={(e) => {
                                 e.stopPropagation();
@@ -699,9 +755,9 @@ export function BudgetClient({ wedding, categories }: BudgetClientProps) {
                               <Trash2 className="h-3.5 w-3.5 text-muted-foreground" />
                             </button>
                           </div>
-                          {expense.note && (
+                          {displayExpNote && (
                             <p className="text-xs text-muted-foreground px-4 pb-2">
-                              {expense.note.slice(0, 60)}
+                              {displayExpNote.slice(0, 60)}
                             </p>
                           )}
                         </div>
