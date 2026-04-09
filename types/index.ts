@@ -101,3 +101,20 @@ export interface Expense {
 export interface CategoryWithExpenses extends BudgetCategory {
   expenses: Expense[];
 }
+
+// Guest list types
+export type GuestSide = "Bride" | "Groom" | "Both";
+export type GuestRelationship = "Family" | "Friend" | "Colleague" | "Plus One";
+
+export const GUEST_SIDES: GuestSide[] = ["Bride", "Groom", "Both"];
+export const GUEST_RELATIONSHIPS: GuestRelationship[] = ["Family", "Friend", "Colleague", "Plus One"];
+
+export interface Guest {
+  id: string;
+  wedding_id: string;
+  name: string;
+  side: string | null;
+  relationship: string | null;
+  invited: boolean;
+  created_at: string | null;
+}
