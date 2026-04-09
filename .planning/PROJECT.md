@@ -12,23 +12,22 @@ Both partners can make and vote on decisions independently, with compatibility s
 
 ### Validated
 
-(None yet — ship to validate)
+- [x] User can sign up, create a wedding, and land on a dashboard — Validated in Phase 01: Foundation
+- [x] User can invite a partner via email link; partner can claim the invite and join — Validated in Phase 01: Foundation
+- [x] A wedding has max 2 members; no third member can join — Validated in Phase 01: Foundation
+- [x] After claiming invite, both partners see the same shared dashboard — Validated in Phase 01: Foundation
+- [x] Dashboard shows budget snapshot (total/allocated/spent/remaining) and milestone map — Validated in Phase 02: Dashboard Progress Map
+- [x] Dashboard is accessible only to authenticated wedding members — Validated in Phase 01: Foundation
+- [x] Default 9 milestones are seeded on wedding creation — Validated in Phase 02: Dashboard Progress Map
+- [x] Either partner can toggle a milestone's status and add custom milestones — Validated in Phase 02: Dashboard Progress Map
+- [x] Couple can create budget categories with allocated amounts and log expenses — Validated in Phase 04: Budget Tracking
+- [x] Dashboard budget totals update as expenses are added/changed — Validated in Phase 04: Budget Tracking
 
 ### Active
 
-- [ ] User can sign up, create a wedding, and land on a dashboard
-- [ ] User can invite a partner via email link; partner can claim the invite and join
-- [ ] A wedding has max 2 members; no third member can join
-- [ ] After claiming invite, both partners see the same shared dashboard
-- [ ] Dashboard shows budget snapshot (total/allocated/spent/remaining) and milestone map
-- [ ] Dashboard is accessible only to authenticated wedding members
-- [ ] Default 9 milestones are seeded on wedding creation
-- [ ] Either partner can toggle a milestone's status and add custom milestones
 - [ ] Either partner can create decisions and add options; queue order is manually adjustable
 - [ ] Ratings are hidden until both partners have voted; compatibility score shown after
 - [ ] Decisions can be resolved with a selected winning option
-- [ ] Couple can create budget categories with allocated amounts and log expenses
-- [ ] Dashboard budget totals update as expenses are added/changed
 - [ ] Either partner can add, edit, and delete guests with relationship/side metadata
 - [ ] Wedding owner can update wedding name, date, and total budget in Settings
 
@@ -73,4 +72,4 @@ Both partners can make and vote on decisions independently, with compatibility s
 | Budget category names are freeform | Flexibility preferred over constraint to milestone names | — Pending |
 
 ---
-*Last updated: 2026-03-07 after initialization*
+*Last updated: 2026-04-08 — Phase 04 Budget Tracking complete*
