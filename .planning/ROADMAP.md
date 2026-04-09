@@ -78,13 +78,13 @@ Plans:
 
 **Requirements:** BUDG-01, BUDG-02, BUDG-03, BUDG-04, BUDG-05, BUDG-06
 
-**Plans:** 3/4 plans executed
+**Plans:** 4/4 plans complete
 
 Plans:
 - [x] 04-01-PLAN.md — Domain types, server actions (CRUD), and budget page Server Component
 - [x] 04-02-PLAN.md — BudgetClient UI: summary bar, category accordion, expense management, visual verification
 - [x] 04-03-PLAN.md — Gap closure: fix isOverAllocated condition, amber Pending button, "Cancel" labels
-- [ ] 04-04-PLAN.md — Gap closure: updateTotalBudget server action + Total Budget inline edit UI
+- [x] 04-04-PLAN.md — Gap closure: updateTotalBudget server action + Total Budget inline edit UI
 
 **Success Criteria:**
 1. Create 2 categories; when allocated sum exceeds total budget, inline warning appears

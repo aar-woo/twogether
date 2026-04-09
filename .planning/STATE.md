@@ -4,13 +4,13 @@ milestone: v1.0
 milestone_name: milestone
 current_plan: 1
 status: Executing Phase 04
-last_updated: "2026-04-08T05:33:39.135Z"
+last_updated: "2026-04-09T03:00:36.619Z"
 last_activity: 2026-04-08
 progress:
   total_phases: 7
-  completed_phases: 3
+  completed_phases: 4
   total_plans: 13
-  completed_plans: 12
+  completed_plans: 13
 ---
 
 # Project State
@@ -68,6 +68,8 @@ See: .planning/PROJECT.md (updated 2026-03-07)
 - [Phase 04-budget-tracking]: Amount parsing strips non-numeric chars with regex to allow dollar-prefixed user input in expense/category forms
 - [Phase 04-budget-tracking]: isOverAllocated simplified to allocated > totalBudget (removed zero-budget guard)
 - [Phase 04-budget-tracking]: Pending toggle uses amber-100/700/300, Paid keeps sage-500 for distinct visual states
+- [Phase 04-budget-tracking]: updateTotalBudget accepts weddingId directly from client instead of re-deriving via wedding_members join — RLS on weddings enforces membership, making the join redundant
+- [Phase 04-budget-tracking]: Total Budget stat card broken out of generic budgetCards.map() loop; other 3 stat cards remain in generic map
 
 ## Performance Metrics
 
@@ -83,6 +85,7 @@ See: .planning/PROJECT.md (updated 2026-03-07)
 | Phase 04-budget-tracking P01 | 2min | 2 tasks | 4 files |
 | Phase 04-budget-tracking P02 | 2min | 1 tasks | 1 files |
 | Phase 04-budget-tracking P03 | 2min | 2 tasks | 1 files |
+| Phase 04-budget-tracking P04 | 15min | 3 tasks | 2 files |
 
 ## Session Log
 
