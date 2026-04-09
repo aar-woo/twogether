@@ -4,7 +4,7 @@ milestone: v1.0
 milestone_name: milestone
 current_plan: Not started
 status: Ready to plan
-last_updated: "2026-04-09T03:07:08.226Z"
+last_updated: "2026-04-09T05:01:03.909Z"
 last_activity: 2026-04-09
 progress:
   total_phases: 7
@@ -104,6 +104,6 @@ See: .planning/PROJECT.md (updated 2026-03-07)
 ## Resume Point
 
 Next action: 03-03 Task 3 checkpoint — human verification of /decisions/[id] voting flow
-Resume file: None
+Resume file: .planning/phases/05-guest-list/05-CONTEXT.md
 
 Last activity: 2026-04-09
