@@ -217,6 +217,7 @@ export async function deleteExpense(id: string): Promise<{ error?: string }> {
 }
 
 export async function updateTotalBudget(
+  weddingId: string,
   amount: number,
 ): Promise<{ error?: string }> {
   try {
@@ -226,18 +227,10 @@ export async function updateTotalBudget(
     } = await supabase.auth.getUser();
     if (!user) return { error: "Not authenticated" };
 
-    const { data: member, error: memberError } = await supabase
-      .from("wedding_members")
-      .select("wedding_id")
-      .eq("user_id", user.id)
-      .single();
-
-    if (memberError || !member) return { error: "No wedding found" };
-
     const { error } = await supabase
       .from("weddings")
       .update({ total_budget: amount })
-      .eq("id", member.wedding_id);
+      .eq("id", weddingId);
 
     if (error) return { error: error.message };
 

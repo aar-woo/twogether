@@ -292,7 +292,7 @@ export function BudgetClient({ wedding, categories }: BudgetClientProps) {
     }
     setError(null);
     startTransition(async () => {
-      const result = await updateTotalBudget(parsed);
+      const result = await updateTotalBudget(wedding.id, parsed);
       if (!result?.error) {
         setIsEditingTotalBudget(false);
         router.refresh();
