@@ -101,10 +101,10 @@ Plans:
 
 **Requirements:** GUES-01, GUES-02, GUES-03
 
-**Plans:** 2 plans
+**Plans:** 1/2 plans executed
 
 Plans:
-- [ ] 05-01-PLAN.md — Domain types, server actions (CRUD), page server component, install shadcn Select
+- [x] 05-01-PLAN.md — Domain types, server actions (CRUD), page server component, install shadcn Select
 - [ ] 05-02-PLAN.md — GuestClient UI: table with inline add/edit, invited toggle, summary section
 
 **Success Criteria:**

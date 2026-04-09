@@ -54,8 +54,8 @@
 
 ### Guests
 
-- [ ] **GUES-01**: Either partner can add a guest with name, relationship, side, and invited status
-- [ ] **GUES-02**: Guests can be edited and deleted
+- [x] **GUES-01**: Either partner can add a guest with name, relationship, side, and invited status
+- [x] **GUES-02**: Guests can be edited and deleted
 - [ ] **GUES-03**: Summary section shows total invited count plus breakdowns by side and relationship
 
 ### Settings
@@ -132,8 +132,8 @@
 | BUDG-04 | Phase 4 | Complete |
 | BUDG-05 | Phase 4 | Complete |
 | BUDG-06 | Phase 4 | Complete |
-| GUES-01 | Phase 5 | Pending |
-| GUES-02 | Phase 5 | Pending |
+| GUES-01 | Phase 5 | Complete |
+| GUES-02 | Phase 5 | Complete |
 | GUES-03 | Phase 5 | Pending |
 | SETT-01 | Phase 6 | Pending |
 | SETT-02 | Phase 6 | Pending |
