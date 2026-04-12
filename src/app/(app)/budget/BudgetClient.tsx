@@ -585,7 +585,7 @@ export function BudgetClient({ wedding, categories }: BudgetClientProps) {
                         setEditingCategoryId(null);
                       }}
                     >
-                      <Trash2 className="h-4 w-4 text-muted-foreground" />
+                      <Trash2 className="h-4 w-4 text-slate-400" />
                     </button>
                     {isOpen ? (
                       <ChevronUp className="h-4 w-4 text-muted-foreground" />
@@ -752,7 +752,7 @@ export function BudgetClient({ wedding, categories }: BudgetClientProps) {
                                 setEditingExpenseId(null);
                               }}
                             >
-                              <Trash2 className="h-3.5 w-3.5 text-muted-foreground" />
+                              <Trash2 className="h-3.5 w-3.5 text-slate-400" />
                             </button>
                           </div>
                           {displayExpNote && (

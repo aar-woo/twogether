@@ -11,17 +11,26 @@
   --font-mono: var(--font-geist-mono);
 
   /* Sage green palette */
-  --color-sage-50:  #EAF4EC;
-  --color-sage-100: #C8E3CC;
-  --color-sage-200: #A8D4B3;
-  --color-sage-300: #80B890;
-  --color-sage-400: #5E9B6D;
-  --color-sage-500: #4A8059;
-  --color-sage-600: #3D6B4A;
-  --color-sage-700: #2C4A35;
+  --color-sage-50: #eaf4ec;
+  --color-sage-100: #c8e3cc;
+  --color-sage-200: #a8d4b3;
+  --color-sage-300: #80b890;
+  --color-sage-400: #5e9b6d;
+  --color-sage-500: #4a8059;
+  --color-sage-600: #3d6b4a;
+  --color-sage-700: #2c4a35;
+
+  /* Navy tertiary palette */
+  --color-navy-50: #ecedf3;
+  --color-navy-100: #c9cbe0;
+  --color-navy-200: #a3a7ca;
+  --color-navy-300: #7578af;
+  --color-navy-400: #3f4580;
+  --color-navy-500: #161b33;
+  --color-navy-600: #10142a;
 
   /* Warm off-white background palette */
-  --color-warm-50:  oklch(98.5% 0.005 80);
+  --color-warm-50: oklch(98.5% 0.005 80);
   --color-warm-100: oklch(96% 0.008 80);
 
   /* shadcn color aliases */
@@ -69,23 +78,23 @@
 /* shadcn/ui CSS variable overrides — sage green brand identity */
 :root {
   --background: oklch(98.5% 0.005 80);
-  --foreground: #1E3325;
+  --foreground: #1e3325;
   --card: oklch(100% 0 0);
-  --card-foreground: #1E3325;
+  --card-foreground: #1e3325;
   --popover: oklch(100% 0 0);
-  --popover-foreground: #1E3325;
-  --primary: #4A8059;
-  --primary-foreground: #EAF4EC;
-  --secondary: #C8E3CC;
-  --secondary-foreground: #1E3325;
+  --popover-foreground: #1e3325;
+  --primary: #4a8059;
+  --primary-foreground: #eaf4ec;
+  --secondary: #c8e3cc;
+  --secondary-foreground: #1e3325;
   --muted: oklch(96% 0.008 80);
-  --muted-foreground: #3D6B4A;
-  --accent: #C8E3CC;
-  --accent-foreground: #1E3325;
+  --muted-foreground: #3d6b4a;
+  --accent: #c8e3cc;
+  --accent-foreground: #1e3325;
   --destructive: oklch(0.58 0.22 27);
   --border: oklch(88% 0.01 80);
   --input: oklch(88% 0.01 80);
-  --ring: #4A8059;
+  --ring: #4a8059;
   --radius: 0.5rem;
   --chart-1: oklch(0.809 0.105 251.813);
   --chart-2: oklch(0.623 0.214 259.815);
@@ -94,12 +103,12 @@
   --chart-5: oklch(0.424 0.199 265.638);
   --sidebar: oklch(96% 0.008 80);
   --sidebar-foreground: oklch(22% 0.01 35);
-  --sidebar-primary: #4A8059;
-  --sidebar-primary-foreground: #EAF4EC;
-  --sidebar-accent: #C8E3CC;
-  --sidebar-accent-foreground: #1E3325;
+  --sidebar-primary: #4a8059;
+  --sidebar-primary-foreground: #eaf4ec;
+  --sidebar-accent: #c8e3cc;
+  --sidebar-accent-foreground: #1e3325;
   --sidebar-border: oklch(88% 0.01 80);
-  --sidebar-ring: #4A8059;
+  --sidebar-ring: #4a8059;
 }
 
 @layer base {

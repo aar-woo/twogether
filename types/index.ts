@@ -107,7 +107,37 @@ export type GuestSide = "Bride" | "Groom" | "Both";
 export type GuestRelationship = "Family" | "Friend" | "Colleague" | "Plus One";
 
 export const GUEST_SIDES: GuestSide[] = ["Bride", "Groom", "Both"];
-export const GUEST_RELATIONSHIPS: GuestRelationship[] = ["Family", "Friend", "Colleague", "Plus One"];
+export const GUEST_RELATIONSHIPS: GuestRelationship[] = [
+  "Family",
+  "Friend",
+  "Colleague",
+  "Plus One",
+];
+
+export const GUEST_SIDE_TO_DB: Record<GuestSide, string> = {
+  Bride: "partner_a",
+  Groom: "partner_b",
+  Both: "shared",
+};
+
+export const GUEST_SIDE_FROM_DB: Record<string, GuestSide> = {
+  partner_a: "Bride",
+  partner_b: "Groom",
+  shared: "Both",
+};
+
+export const GUEST_SIDE_ICON: Record<GuestSide, string> = {
+  Bride: "👰",
+  Groom: "🤵",
+  Both: "👫",
+};
+
+export const GUEST_RELATIONSHIP_ICON: Record<GuestRelationship, string> = {
+  Family: "🏠",
+  Friend: "🤝",
+  Colleague: "💼",
+  "Plus One": "➕",
+};
 
 export interface Guest {
   id: string;
